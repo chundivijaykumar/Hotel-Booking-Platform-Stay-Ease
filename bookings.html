@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Bookings - StayEase</title>
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
+
+    <style>
+
+        /* ==========================================
+           PAGE
+        ========================================== */
+
+        body {
+            margin: 0 !important;
+            padding: 0 !important;
+            background: #f4f7fb !important;
+            color: #173b63;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        /* ==========================================
+           NAVBAR
+        ========================================== */
+
+        .bookings-navbar {
+            width: 100%;
+            height: 70px;
+
+            background: #123b60;
+
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+
+            padding: 0 50px !important;
+
+            box-sizing: border-box;
+        }
+
+
+        .bookings-logo {
+            color: white;
+
+            font-size: 28px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+        }
+
+
+        .bookings-nav {
+            display: flex !important;
+
+            align-items: center !important;
+
+            gap: 30px !important;
+
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+
+        .bookings-nav a {
+            color: white !important;
+
+            text-decoration: none !important;
+
+            font-size: 16px !important;
+
+            font-weight: 500 !important;
+
+            white-space: nowrap;
+
+            margin: 0 !important;
+        }
+
+
+        .bookings-nav a:hover {
+            color: #cfe5ff !important;
+        }
+
+
+        /* ==========================================
+           MAIN
+        ========================================== */
+
+        .bookings-page {
+            width: 100%;
+
+            min-height:
+                calc(100vh - 70px);
+
+            padding: 45px 20px 70px;
+
+            box-sizing: border-box;
+        }
+
+
+        .bookings-container {
+            width: 100%;
+
+            max-width: 1050px;
+
+            margin: 0 auto;
+        }
+
+
+        /* ==========================================
+           PAGE HEADER
+        ========================================== */
+
+        .page-header {
+            text-align: center;
+
+            margin-bottom: 40px;
+        }
+
+
+        .page-header h1 {
+            margin: 0 0 10px;
+
+            color: #123b60;
+
+            font-size: 38px;
+        }
+
+
+        .page-header p {
+            margin: 0;
+
+            color: #64748b;
+
+            font-size: 18px;
+        }
+
+
+        /* ==========================================
+           SECTION
+        ========================================== */
+
+        .booking-section {
+            margin-bottom: 45px;
+        }
+
+
+        .section-heading {
+            margin: 0 0 22px;
+
+            color: #123b60;
+
+            font-size: 27px;
+
+            font-weight: 700;
+        }
+
+
+        /* ==========================================
+           EMPTY MESSAGE
+        ========================================== */
+
+        .empty-box {
+            background: white;
+
+            border-radius: 14px;
+
+            padding: 30px;
+
+            text-align: center;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.06);
+
+            color: #64748b;
+
+            font-size: 16px;
+        }
+
+
+        /* ==========================================
+           BOOKING CARD
+        ========================================== */
+
+        .booking-card {
+            width: 100%;
+
+            background: white;
+
+            border-radius: 16px;
+
+            margin-bottom: 25px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 6px 25px
+                rgba(0, 0, 0, 0.07);
+
+            border-left: 7px solid #2563eb;
+        }
+
+
+        .booking-card.completed {
+            border-left-color: #16a34a;
+        }
+
+
+        .booking-card.cancelled {
+            border-left-color: #dc2626;
+        }
+
+
+        /* ==========================================
+           BOOKING HEADER
+        ========================================== */
+
+        .booking-header {
+            padding: 22px 28px;
+
+            display: flex;
+
+            align-items: flex-start;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+
+        .hotel-name {
+            margin: 0 0 8px;
+
+            color: #123b60;
+
+            font-size: 25px;
+
+            font-weight: 700;
+        }
+
+
+        .booking-id {
+            margin: 0;
+
+            color: #64748b;
+
+            font-size: 15px;
+        }
+
+
+        /* ==========================================
+           STATUS
+        ========================================== */
+
+        .status-badge {
+            display: inline-block;
+
+            padding: 8px 14px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+        }
+
+
+        .status-confirmed {
+            background: #dcfce7;
+
+            color: #166534;
+        }
+
+
+        .status-completed {
+            background: #dbeafe;
+
+            color: #1d4ed8;
+        }
+
+
+        .status-cancelled {
+            background: #fee2e2;
+
+            color: #991b1b;
+        }
+
+
+        .status-pending {
+            background: #fef3c7;
+
+            color: #92400e;
+        }
+
+
+        /* ==========================================
+           BOOKING BODY
+        ========================================== */
+
+        .booking-body {
+            padding: 25px 28px;
+        }
+
+
+        .details-title {
+            margin: 0 0 15px;
+
+            color: #123b60;
+
+            font-size: 19px;
+        }
+
+
+        .details-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .detail-box {
+            background: #f8fbff;
+
+            border: 1px solid #e1eaf3;
+
+            border-radius: 10px;
+
+            padding: 14px 16px;
+        }
+
+
+        .detail-label {
+            display: block;
+
+            margin-bottom: 6px;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+
+        .detail-value {
+            display: block;
+
+            color: #173b63;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            word-break: break-word;
+        }
+
+
+        /* ==========================================
+           ROOM DETAILS
+        ========================================== */
+
+        .room-box {
+            background: #f1f6ff;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .room-title {
+            margin: 0 0 15px;
+
+            color: #123b60;
+
+            font-size: 19px;
+        }
+
+
+        .room-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+        }
+
+
+        /* ==========================================
+           PAYMENT DETAILS
+        ========================================== */
+
+        .payment-box {
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .payment-title {
+            margin: 0 0 15px;
+
+            color: #123b60;
+
+            font-size: 19px;
+        }
+
+
+        .amount {
+            color: #087f3e;
+
+            font-size: 22px;
+
+            font-weight: 700;
+        }
+
+
+        /* ==========================================
+           MANAGER DETAILS
+        ========================================== */
+
+        .manager-box {
+            background: #fffaf0;
+
+            border: 1px solid #f3dfb0;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .manager-title {
+            margin: 0 0 15px;
+
+            color: #123b60;
+
+            font-size: 19px;
+        }
+
+
+        .manager-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+        }
+
+
+        /* ==========================================
+           LOCATION
+        ========================================== */
+
+        .location-box {
+            background: #f8fbff;
+
+            border: 1px solid #dbe7f3;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .location-title {
+            margin: 0 0 10px;
+
+            color: #123b60;
+
+            font-size: 19px;
+        }
+
+
+        .location-text {
+            margin: 0 0 14px;
+
+            color: #475569;
+
+            line-height: 1.6;
+        }
+
+
+        .map-link {
+            display: inline-block;
+
+            color: white;
+
+            background: #2563eb;
+
+            padding: 9px 15px;
+
+            border-radius: 7px;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        .map-link:hover {
+            background: #1d4ed8;
+        }
+
+
+        /* ==========================================
+           CANCELLATION
+        ========================================== */
+
+        .cancellation-box {
+            background: #fff1f2;
+
+            border: 1px solid #fecdd3;
+
+            border-radius: 10px;
+
+            padding: 15px 18px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .cancellation-box strong {
+            color: #991b1b;
+        }
+
+
+        .cancellation-box p {
+            margin: 6px 0 0;
+
+            color: #7f1d1d;
+
+            line-height: 1.5;
+        }
+
+
+        /* ==========================================
+           ACTIONS
+        ========================================== */
+
+        .booking-actions {
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 12px;
+
+            padding-top: 5px;
+        }
+
+
+        .cancel-button {
+            border: none;
+
+            background: #dc2626;
+
+            color: white;
+
+            padding: 11px 20px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        .cancel-button:hover {
+            background: #b91c1c;
+        }
+
+
+        /* ==========================================
+           MOBILE
+        ========================================== */
+
+        @media (max-width: 800px) {
+
+            .bookings-navbar {
+                height: auto;
+
+                min-height: 70px;
+
+                padding: 15px 20px !important;
+
+                flex-direction: column;
+
+                gap: 12px;
+            }
+
+
+            .bookings-nav {
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+                gap: 15px !important;
+            }
+
+
+            .bookings-page {
+                padding:
+                    30px 12px 50px;
+            }
+
+
+            .page-header h1 {
+                font-size: 30px;
+            }
+
+
+            .details-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+
+            .room-grid,
+            .manager-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+
+            .booking-header {
+                flex-direction: column;
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .details-grid,
+            .room-grid,
+            .manager-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .booking-header,
+            .booking-body {
+                padding: 20px;
+            }
+
+
+            .hotel-name {
+                font-size: 21px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================================
+     NAVBAR
+========================================== -->
+
+<header class="bookings-navbar">
+
+    <div class="bookings-logo">
+        StayEase
+    </div>
+
+
+    <nav class="bookings-nav">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="hotels.html">
+            Hotels
+        </a>
+
+        <a href="bookings.html">
+            My Bookings
+        </a>
+
+        <a href="profile.html">
+            Profile
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ==========================================
+     MAIN
+========================================== -->
+
+<main class="bookings-page">
+
+
+    <div class="bookings-container">
+
+
+        <!-- PAGE HEADER -->
+
+        <div class="page-header">
+
+            <h1>
+                My Bookings
+            </h1>
+
+            <p>
+                View and manage your hotel reservations
+            </p>
+
+        </div>
+
+
+
+        <!-- ======================================
+             UPCOMING BOOKINGS
+        ======================================= -->
+
+        <section class="booking-section">
+
+            <h2 class="section-heading">
+                Upcoming Bookings
+            </h2>
+
+
+            <div id="upcomingBookings">
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ======================================
+             COMPLETED BOOKINGS
+        ======================================= -->
+
+        <section class="booking-section">
+
+            <h2 class="section-heading">
+                Completed Bookings
+            </h2>
+
+
+            <div id="completedBookings">
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ======================================
+             CANCELLED BOOKINGS
+        ======================================= -->
+
+        <section class="booking-section">
+
+            <h2 class="section-heading">
+                Cancelled Bookings
+            </h2>
+
+
+            <div id="cancelledBookings">
+
+            </div>
+
+        </section>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- ==========================================
+     JAVASCRIPT
+========================================== -->
+
+<script src="js/data.js"></script>
+
+<script src="js/auth.js"></script>
+
+<script src="js/booking.js"></script>
+
+
+
+<script>
+
+
+// ==========================================
+// CURRENT USER
+// ==========================================
+
+function getBookingsPageUser() {
+
+    return JSON.parse(
+        localStorage.getItem(
+            "currentUser"
+        )
+    ) || null;
+}
+
+
+// ==========================================
+// GET USER BOOKINGS
+// ==========================================
+
+function getBookingsPageData() {
+
+    const user =
+        getBookingsPageUser();
+
+
+    if (!user) {
+
+        return [];
+
+    }
+
+
+    const bookings =
+        JSON.parse(
+            localStorage.getItem(
+                "bookings"
+            )
+        ) || [];
+
+
+    const userId =
+        user.id ||
+        user.userId;
+
+
+    return bookings.filter(
+        function (booking) {
+
+            return String(
+                booking.userId
+            ) === String(
+                userId
+            );
+
+        }
+    );
+}
+
+
+// ==========================================
+// FORMAT DATE
+// ==========================================
+
+function formatBookingDate(date) {
+
+    if (!date) {
+
+        return "-";
+
+    }
+
+
+    const d =
+        new Date(date);
+
+
+    if (isNaN(d.getTime())) {
+
+        return date;
+
+    }
+
+
+    return d.toLocaleDateString(
+        "en-IN",
+        {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric"
+        }
+    );
+}
+
+
+// ==========================================
+// STATUS CLASS
+// ==========================================
+
+function getBookingStatusClass(status) {
+
+    if (
+        status === "Completed"
+    ) {
+
+        return "status-completed";
+
+    }
+
+
+    if (
+        status &&
+        status.includes("Cancelled")
+    ) {
+
+        return "status-cancelled";
+
+    }
+
+
+    if (
+        status === "Payment Pending"
+    ) {
+
+        return "status-pending";
+
+    }
+
+
+    return "status-confirmed";
+}
+
+
+// ==========================================
+// CREATE BOOKING CARD
+// ==========================================
+
+function createBookingCard(booking) {
+
+    /*
+     * IMPORTANT:
+     * The correct hotel field is hotelName.
+     */
+
+    const hotelName =
+        booking.hotelName ||
+        "Hotel Name Not Available";
+
+
+    const city =
+        booking.city ||
+        "Not Available";
+
+
+    const roomType =
+        booking.roomType ||
+        "Not Available";
+
+
+    const persons =
+        booking.persons ||
+        "-";
+
+
+    const acType =
+        booking.acType ||
+        "Not Available";
+
+
+    const checkIn =
+        booking.checkIn ||
+        "";
+
+
+    const checkOut =
+        booking.checkOut ||
+        "";
+
+
+    const status =
+        booking.status ||
+        "Unknown";
+
+
+    const paymentStatus =
+        booking.paymentStatus ||
+        "Pending";
+
+
+    const managerName =
+        booking.managerName ||
+        "Not Available";
+
+
+    const managerPhone =
+        booking.managerPhone ||
+        "Not Available";
+
+
+    const managerEmail =
+        booking.managerEmail ||
+        "Not Available";
+
+
+    const location =
+        booking.hotelLocation ||
+        "Not Available";
+
+
+    const locationLink =
+        booking.hotelLocationLink ||
+        "";
+
+
+    const cardClass =
+        status === "Completed"
+            ? "completed"
+            : (
+                status.includes("Cancelled")
+                    ? "cancelled"
+                    : ""
+              );
+
+
+    const statusClass =
+        getBookingStatusClass(
+            status
+        );
+
+
+    const canCancel =
+        status === "Confirmed";
+
+
+    return `
+
+        <div class="booking-card ${cardClass}">
+
+
+            <!-- HEADER -->
+
+            <div class="booking-header">
+
+                <div>
+
+                    <h3 class="hotel-name">
+                        ${hotelName}
+                    </h3>
+
+                    <p class="booking-id">
+
+                        Booking ID:
+                        <strong>
+                            ${booking.id}
+                        </strong>
+
+                    </p>
+
+                </div>
+
+
+                <span
+                    class="status-badge ${statusClass}"
+                >
+                    ${status}
+                </span>
+
+            </div>
+
+
+
+            <!-- BODY -->
+
+            <div class="booking-body">
+
+
+                <!-- BASIC DETAILS -->
+
+                <h3 class="details-title">
+                    Booking Information
+                </h3>
+
+
+                <div class="details-grid">
+
+
+                    <div class="detail-box">
+
+                        <span class="detail-label">
+                            User ID
+                        </span>
+
+                        <span class="detail-value">
+                            ${booking.userId || "-"}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <span class="detail-label">
+                            City
+                        </span>
+
+                        <span class="detail-value">
+                            ${city}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <span class="detail-label">
+                            Check-in
+                        </span>
+
+                        <span class="detail-value">
+                            ${formatBookingDate(checkIn)}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <span class="detail-label">
+                            Check-out
+                        </span>
+
+                        <span class="detail-value">
+                            ${formatBookingDate(checkOut)}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <span class="detail-label">
+                            Number of Nights
+                        </span>
+
+                        <span class="detail-value">
+                            ${booking.nights || "-"}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <span class="detail-label">
+                            Booking Status
+                        </span>
+
+                        <span class="detail-value">
+                            ${status}
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ROOM DETAILS -->
+
+                <div class="room-box">
+
+                    <h3 class="room-title">
+                        🛏 Room Details
+                    </h3>
+
+
+                    <div class="room-grid">
+
+
+                        <div class="detail-box">
+
+                            <span class="detail-label">
+                                Room Type
+                            </span>
+
+                            <span class="detail-value">
+                                ${roomType}
+                            </span>
+
+                        </div>
+
+
+                        <div class="detail-box">
+
+                            <span class="detail-label">
+                                Persons / Capacity
+                            </span>
+
+                            <span class="detail-value">
+                                ${persons}
+                            </span>
+
+                        </div>
+
+
+                        <div class="detail-box">
+
+                            <span class="detail-label">
+                                AC / Non-AC
+                            </span>
+
+                            <span class="detail-value">
+                                ${acType}
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PAYMENT -->
+
+                <div class="payment-box">
+
+                    <h3 class="payment-title">
+                        💳 Payment Details
+                    </h3>
+
+
+                    <div class="details-grid">
+
+
+                        <div class="detail-box">
+
+                            <span class="detail-label">
+                                Price Per Night
+                            </span>
+
+                            <span class="detail-value">
+                                ₹${booking.pricePerNight || 0}
+                            </span>
+
+                        </div>
+
+
+                        <div class="detail-box">
+
+                            <span class="detail-label">
+                                Payment Method
+                            </span>
+
+                            <span class="detail-value">
+                                ${booking.paymentMethod || "Not Available"}
+                            </span>
+
+                        </div>
+
+
+                        <div class="detail-box">
+
+                            <span class="detail-label">
+                                Payment Status
+                            </span>
+
+                            <span class="detail-value">
+                                ${paymentStatus}
+                            </span>
+
+                        </div>
+
+
+                        <div class="detail-box">
+
+                            <span class="detail-label">
+                                Total Amount
+                            </span>
+
+                            <span class="amount">
+                                ₹${booking.total || 0}
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- MANAGER -->
+
+                <div class="manager-box">
+
+                    <h3 class="manager-title">
+                        👤 Hotel Manager Details
+                    </h3>
+
+
+                    <div class="manager-grid">
+
+
+                        <div class="detail-box">
+
+                            <span class="detail-label">
+                                Manager Name
+                            </span>
+
+                            <span class="detail-value">
+                                ${managerName}
+                            </span>
+
+                        </div>
+
+
+                        <div class="detail-box">
+
+                            <span class="detail-label">
+                                Contact Number
+                            </span>
+
+                            <span class="detail-value">
+                                ${managerPhone}
+                            </span>
+
+                        </div>
+
+
+                        <div class="detail-box">
+
+                            <span class="detail-label">
+                                Email
+                            </span>
+
+                            <span class="detail-value">
+                                ${managerEmail}
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- LOCATION -->
+
+                <div class="location-box">
+
+                    <h3 class="location-title">
+                        📍 Hotel Location
+                    </h3>
+
+
+                    <p class="location-text">
+                        ${location}
+                    </p>
+
+
+                    ${
+                        locationLink
+                        ? `
+                            <a
+                                href="${locationLink}"
+                                target="_blank"
+                                class="map-link"
+                            >
+                                View on Google Maps
+                            </a>
+                          `
+                        : ""
+                    }
+
+                </div>
+
+
+
+                <!-- CANCELLATION -->
+
+                ${
+                    booking.cancellationReason
+                    ? `
+
+                        <div class="cancellation-box">
+
+                            <strong>
+                                Cancellation Information
+                            </strong>
+
+                            <p>
+                                ${booking.cancellationReason}
+                            </p>
+
+                        </div>
+
+                      `
+                    : ""
+                }
+
+
+
+                <!-- ACTION -->
+
+                ${
+                    canCancel
+                    ? `
+
+                        <div class="booking-actions">
+
+                            <button
+                                class="cancel-button"
+                                onclick="cancelBookingFromPage(${booking.id})"
+                            >
+                                Cancel Booking
+                            </button>
+
+                        </div>
+
+                      `
+                    : ""
+                }
+
+
+            </div>
+
+        </div>
+
+    `;
+}
+
+
+// ==========================================
+// DISPLAY BOOKINGS
+// ==========================================
+
+function displayBookingsPage() {
+
+    const upcomingContainer =
+        document.getElementById(
+            "upcomingBookings"
+        );
+
+
+    const completedContainer =
+        document.getElementById(
+            "completedBookings"
+        );
+
+
+    const cancelledContainer =
+        document.getElementById(
+            "cancelledBookings"
+        );
+
+
+    const user =
+        getBookingsPageUser();
+
+
+    if (!user) {
+
+        upcomingContainer.innerHTML = `
+            <div class="empty-box">
+                Please login to view your bookings.
+            </div>
+        `;
+
+        completedContainer.innerHTML = "";
+
+        cancelledContainer.innerHTML = "";
+
+        return;
+    }
+
+
+    // Update completed bookings
+    if (
+        typeof updateCompletedBookingsForUser ===
+        "function"
+    ) {
+
+        updateCompletedBookingsForUser();
+
+    }
+
+
+    const bookings =
+        getBookingsPageData();
+
+
+    // ======================================
+    // SPLIT BOOKINGS
+    // ======================================
+
+    const upcoming =
+        bookings.filter(
+            function (booking) {
+
+                return (
+                    booking.status !==
+                        "Completed" &&
+                    !(
+                        booking.status &&
+                        booking.status.includes(
+                            "Cancelled"
+                        )
+                    )
+                );
+
+            }
+        );
+
+
+    const completed =
+        bookings.filter(
+            function (booking) {
+
+                return (
+                    booking.status ===
+                    "Completed"
+                );
+
+            }
+        );
+
+
+    const cancelled =
+        bookings.filter(
+            function (booking) {
+
+                return (
+                    booking.status &&
+                    booking.status.includes(
+                        "Cancelled"
+                    )
+                );
+
+            }
+        );
+
+
+    // ======================================
+    // UPCOMING
+    // ======================================
+
+    if (upcoming.length === 0) {
+
+        upcomingContainer.innerHTML = `
+            <div class="empty-box">
+                No upcoming bookings.
+            </div>
+        `;
+
+    } else {
+
+        upcomingContainer.innerHTML =
+            upcoming
+                .map(
+                    createBookingCard
+                )
+                .join("");
+
+    }
+
+
+    // ======================================
+    // COMPLETED
+    // ======================================
+
+    if (completed.length === 0) {
+
+        completedContainer.innerHTML = `
+            <div class="empty-box">
+                No completed bookings.
+            </div>
+        `;
+
+    } else {
+
+        completedContainer.innerHTML =
+            completed
+                .map(
+                    createBookingCard
+                )
+                .join("");
+
+    }
+
+
+    // ======================================
+    // CANCELLED
+    // ======================================
+
+    if (cancelled.length === 0) {
+
+        cancelledContainer.innerHTML = `
+            <div class="empty-box">
+                No cancelled bookings.
+            </div>
+        `;
+
+    } else {
+
+        cancelledContainer.innerHTML =
+            cancelled
+                .map(
+                    createBookingCard
+                )
+                .join("");
+
+    }
+
+}
+
+
+// ==========================================
+// CANCEL BOOKING
+// ==========================================
+
+function cancelBookingFromPage(
+    bookingId
+) {
+
+    if (
+        typeof cancelUserBooking ===
+        "function"
+    ) {
+
+        cancelUserBooking(
+            bookingId
+        );
+
+        return;
+    }
+
+
+    const bookings =
+        JSON.parse(
+            localStorage.getItem(
+                "bookings"
+            )
+        ) || [];
+
+
+    const booking =
+        bookings.find(
+            function (item) {
+
+                return String(item.id) ===
+                    String(bookingId);
+
+            }
+        );
+
+
+    if (!booking) {
+
+        alert(
+            "Booking not found."
+        );
+
+        return;
+    }
+
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to cancel this booking?"
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    booking.status =
+        "Cancelled by User";
+
+
+    booking.cancelledBy =
+        "User";
+
+
+    booking.cancellationReason =
+        "Cancelled by User";
+
+
+    booking.cancelledAt =
+        new Date().toISOString();
+
+
+    localStorage.setItem(
+        "bookings",
+        JSON.stringify(
+            bookings
+        )
+    );
+
+
+    alert(
+        "Booking cancelled successfully."
+    );
+
+
+    displayBookingsPage();
+}
+
+
+// ==========================================
+// PAGE LOAD
+// ==========================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        displayBookingsPage();
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

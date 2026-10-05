@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>StayEase - Hotel Booking Platform</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        /* =====================================================
+           HOME PAGE
+           ===================================================== */
+
+        .home-page {
+            background: #f4f7fb;
+            min-height: calc(100vh - 72px);
+        }
+
+
+        /* =====================================================
+           NAVBAR
+           ===================================================== */
+
+        .navbar {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            background: #123d63;
+            color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+
+        .navbar .logo {
+            font-size: 30px;
+            font-weight: 700;
+            color: #ffffff;
+            white-space: nowrap;
+        }
+
+
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 28px;
+        }
+
+
+        .navbar-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 8px 2px;
+            white-space: nowrap;
+            transition: 0.2s ease;
+        }
+
+
+        .navbar-links a:hover {
+            color: #ffd166;
+        }
+
+
+        /* =====================================================
+           HERO
+           ===================================================== */
+
+        .home-hero {
+            min-height: 605px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 70px 20px;
+
+            background:
+                linear-gradient(
+                    rgba(18, 61, 99, 0.78),
+                    rgba(47, 112, 183, 0.75)
+                ),
+                url(
+                    "https://images.unsplash.com/photo-1566073771259-6a8506099945"
+                );
+
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+        }
+
+
+        .home-hero-content {
+            max-width: 900px;
+        }
+
+
+        .home-hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+
+        .home-hero p {
+            font-size: 20px;
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+
+        .hero-button {
+            display: inline-block;
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+
+        .hero-primary {
+            background: #ffffff;
+            color: #164a7a;
+        }
+
+
+        .hero-primary:hover {
+            transform: translateY(-2px);
+        }
+
+
+        .hero-secondary {
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+        }
+
+
+        .hero-secondary:hover {
+            background: #ffffff;
+            color: #164a7a;
+        }
+
+
+        /* =====================================================
+           SECTIONS
+           ===================================================== */
+
+        .home-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 65px 25px;
+        }
+
+
+        .home-section-title {
+            text-align: center;
+            color: #164a7a;
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+
+        .home-section-subtitle {
+            text-align: center;
+            color: #667085;
+            font-size: 16px;
+            margin-bottom: 35px;
+        }
+
+
+        /* =====================================================
+           CITY CARDS
+           ===================================================== */
+
+        .city-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+
+        .city-card {
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.08);
+            transition: 0.25s;
+        }
+
+
+        .city-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+
+
+        .city-card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            display: block;
+        }
+
+
+        .city-card-content {
+            padding: 20px;
+        }
+
+
+        .city-card h3 {
+            color: #164a7a;
+            font-size: 23px;
+            margin-bottom: 8px;
+        }
+
+
+        .city-card p {
+            color: #667085;
+            margin-bottom: 18px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+
+        .city-button {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            background: #2563eb;
+            color: #ffffff;
+            padding: 12px;
+            border-radius: 7px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+
+        .city-button:hover {
+            background: #1d4ed8;
+        }
+
+
+        /* =====================================================
+           FEATURES
+           ===================================================== */
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+
+        .feature-card {
+            background: #ffffff;
+            border: 1px solid #e1e7ef;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+        }
+
+
+        .feature-icon {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+
+        .feature-card h3 {
+            color: #164a7a;
+            margin-bottom: 8px;
+        }
+
+
+        .feature-card p {
+            color: #667085;
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           HOW IT WORKS
+           ===================================================== */
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+
+        .step-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid #e1e7ef;
+        }
+
+
+        .step-number {
+            width: 45px;
+            height: 45px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            background: #164a7a;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+
+        .step-card h3 {
+            color: #164a7a;
+            margin-bottom: 8px;
+        }
+
+
+        .step-card p {
+            color: #667085;
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           CTA
+           ===================================================== */
+
+        .home-cta {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            padding: 55px 25px;
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #164a7a,
+                    #2f70b7
+                );
+
+            color: #ffffff;
+            border-radius: 18px;
+        }
+
+
+        .home-cta h2 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+
+        .home-cta p {
+            margin-bottom: 25px;
+            font-size: 17px;
+        }
+
+
+        /* =====================================================
+           FOOTER
+           ===================================================== */
+
+        .home-footer {
+            background: #123d63;
+            color: #ffffff;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+
+        .home-footer h3 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+
+        .home-footer p {
+            color: #dbe7f3;
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+           ===================================================== */
+
+        @media (max-width: 1100px) {
+
+            .city-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 900px) {
+
+            .navbar {
+                padding: 15px 25px;
+            }
+
+            .navbar-links {
+                gap: 16px;
+            }
+
+            .home-hero h1 {
+                font-size: 44px;
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .navbar {
+                flex-direction: column;
+                padding: 15px 18px;
+                gap: 12px;
+            }
+
+            .navbar-links {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .city-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .home-hero {
+                min-height: 500px;
+            }
+
+            .home-hero h1 {
+                font-size: 36px;
+            }
+
+            .home-hero p {
+                font-size: 17px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+
+<header class="navbar">
+
+    <div class="logo">
+        StayEase
+    </div>
+
+
+    <nav
+        id="mainNavbar"
+        class="navbar-links"
+    >
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     HOME
+     ===================================================== -->
+
+<main class="home-page">
+
+
+    <!-- HERO -->
+
+    <section class="home-hero">
+
+        <div class="home-hero-content">
+
+            <h1>
+                Find Your Perfect Stay
+            </h1>
+
+
+            <p>
+
+                Discover comfortable hotels,
+                compare rooms and prices,
+                and book your stay easily with
+                StayEase.
+
+            </p>
+
+
+            <div
+                id="heroButtons"
+                class="hero-buttons"
+            >
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         POPULAR CITIES
+         ================================================= -->
+
+    <section class="home-section">
+
+
+        <h2 class="home-section-title">
+            Explore Popular Cities
+        </h2>
+
+
+        <p class="home-section-subtitle">
+
+            Choose a destination and explore
+            available hotels.
+
+        </p>
+
+
+
+        <div class="city-grid">
+
+
+            <!-- HYDERABAD -->
+
+            <div class="city-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1588416936097-41850ab3d86d"
+                    alt="Hyderabad"
+                >
+
+
+                <div class="city-card-content">
+
+                    <h3>
+                        Hyderabad
+                    </h3>
+
+
+                    <p>
+
+                        Explore hotels in Hyderabad
+                        and enjoy comfortable stays
+                        across the city.
+
+                    </p>
+
+
+                    <a
+                        href="hotels.html?city=Hyderabad"
+                        class="city-button"
+                    >
+
+                        Explore Hotels
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- VIJAYAWADA -->
+
+            <div class="city-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1564501049412-61c2a3083791"
+                    alt="Vijayawada"
+                >
+
+
+                <div class="city-card-content">
+
+                    <h3>
+                        Vijayawada
+                    </h3>
+
+
+                    <p>
+
+                        Find hotels and comfortable
+                        accommodation options
+                        in Vijayawada.
+
+                    </p>
+
+
+                    <a
+                        href="hotels.html?city=Vijayawada"
+                        class="city-button"
+                    >
+
+                        Explore Hotels
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- VISAKHAPATNAM -->
+
+            <div class="city-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb"
+                    alt="Visakhapatnam"
+                >
+
+
+                <div class="city-card-content">
+
+                    <h3>
+                        Visakhapatnam
+                    </h3>
+
+
+                    <p>
+
+                        Discover hotels near the
+                        beach and major attractions
+                        in Visakhapatnam.
+
+                    </p>
+
+
+                    <a
+                        href="hotels.html?city=Visakhapatnam"
+                        class="city-button"
+                    >
+
+                        Explore Hotels
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BENGALURU -->
+
+            <div class="city-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1596176530529-78163a4f7af2"
+                    alt="Bengaluru"
+                >
+
+
+                <div class="city-card-content">
+
+                    <h3>
+                        Bengaluru
+                    </h3>
+
+
+                    <p>
+
+                        Explore hotels in Bengaluru
+                        and find comfortable stays
+                        for business and travel.
+
+                    </p>
+
+
+                    <a
+                        href="hotels.html?city=Bengaluru"
+                        class="city-button"
+                    >
+
+                        Explore Hotels
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         FEATURES
+         ================================================= -->
+
+    <section class="home-section">
+
+
+        <h2 class="home-section-title">
+            Why Choose StayEase?
+        </h2>
+
+
+        <p class="home-section-subtitle">
+
+            Everything you need for a simple
+            hotel booking experience.
+
+        </p>
+
+
+        <div class="features-grid">
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🔍
+                </div>
+
+                <h3>
+                    Easy Search
+                </h3>
+
+                <p>
+                    Search hotels by name
+                    or location.
+                </p>
+
+            </div>
+
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🏨
+                </div>
+
+                <h3>
+                    Room Choices
+                </h3>
+
+                <p>
+                    Select room type,
+                    persons and AC or Non-AC.
+                </p>
+
+            </div>
+
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    💳
+                </div>
+
+                <h3>
+                    Easy Payment
+                </h3>
+
+                <p>
+                    Select your preferred
+                    payment method.
+                </p>
+
+            </div>
+
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    📧
+                </div>
+
+                <h3>
+                    Booking Confirmation
+                </h3>
+
+                <p>
+                    Receive booking details
+                    after successful payment.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         HOW IT WORKS
+         ================================================= -->
+
+    <section class="home-section">
+
+
+        <h2 class="home-section-title">
+            How StayEase Works
+        </h2>
+
+
+        <p class="home-section-subtitle">
+
+            Book your hotel in four simple steps.
+
+        </p>
+
+
+        <div class="steps-grid">
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    1
+                </div>
+
+                <h3>
+                    Search
+                </h3>
+
+                <p>
+                    Search for hotels by
+                    destination or hotel name.
+                </p>
+
+            </div>
+
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    2
+                </div>
+
+                <h3>
+                    View Details
+                </h3>
+
+                <p>
+                    Check hotel information,
+                    manager details and rooms.
+                </p>
+
+            </div>
+
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    3
+                </div>
+
+                <h3>
+                    Book
+                </h3>
+
+                <p>
+                    Select your room,
+                    dates and number of persons.
+                </p>
+
+            </div>
+
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    4
+                </div>
+
+                <h3>
+                    Pay
+                </h3>
+
+                <p>
+                    Select a payment method
+                    and confirm your booking.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         CTA
+         ================================================= -->
+
+    <section class="home-cta">
+
+
+        <h2>
+            Ready to Find Your Stay?
+        </h2>
+
+
+        <p>
+
+            Explore available hotels
+            and book your room with StayEase.
+
+        </p>
+
+
+        <a
+            href="hotels.html"
+            class="hero-button hero-primary"
+        >
+
+            Explore Hotels
+
+        </a>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer class="home-footer">
+
+    <h3>
+        StayEase
+    </h3>
+
+
+    <p>
+        Hotel Booking Platform
+    </p>
+
+
+    <p>
+        Search • Compare • Book • Stay
+    </p>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script src="js/data.js"></script>
+
+<script src="js/auth.js"></script>
+
+
+<script>
+
+
+function setupHomePage() {
+
+    const navbar =
+        document.getElementById(
+            "mainNavbar"
+        );
+
+
+    const heroButtons =
+        document.getElementById(
+            "heroButtons"
+        );
+
+
+    const currentUser =
+        JSON.parse(
+            localStorage.getItem(
+                "currentUser"
+            )
+        );
+
+
+    /* ================================================
+       LOGGED-IN USER
+       ================================================ */
+
+    if (currentUser) {
+
+        navbar.innerHTML = `
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="hotels.html">
+                Hotels
+            </a>
+
+            <a href="bookings.html">
+                My Bookings
+            </a>
+
+            <a href="profile.html">
+                Profile
+            </a>
+
+            <a
+                href="#"
+                onclick="logoutFromHome(event)"
+            >
+                Logout
+            </a>
+
+        `;
+
+
+        heroButtons.innerHTML = `
+
+            <a
+                href="hotels.html"
+                class="hero-button hero-primary"
+            >
+                Explore Hotels
+            </a>
+
+        `;
+
+    }
+
+
+    /* ================================================
+       LOGGED-OUT USER
+       ================================================ */
+
+    else {
+
+        navbar.innerHTML = `
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="hotels.html">
+                Hotels
+            </a>
+
+            <a href="login.html">
+                Login
+            </a>
+
+            <a href="register.html">
+                Register
+            </a>
+
+        `;
+
+
+        heroButtons.innerHTML = `
+
+            <a
+                href="hotels.html"
+                class="hero-button hero-primary"
+            >
+                Explore Hotels
+            </a>
+
+            <a
+                href="register.html"
+                class="hero-button hero-secondary"
+            >
+                Create Account
+            </a>
+
+        `;
+
+    }
+
+}
+
+
+
+function logoutFromHome(event) {
+
+    event.preventDefault();
+
+
+    const confirmLogout =
+        confirm(
+            "Are you sure you want to logout?"
+        );
+
+
+    if (!confirmLogout) {
+        return;
+    }
+
+
+    localStorage.removeItem(
+        "currentUser"
+    );
+
+
+    sessionStorage.removeItem(
+        "paymentAccess"
+    );
+
+
+    alert(
+        "You have been logged out successfully."
+    );
+
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        setupHomePage();
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

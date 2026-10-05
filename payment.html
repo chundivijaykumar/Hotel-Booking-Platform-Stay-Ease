@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Payment - StayEase</title>
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
+
+    <style>
+
+        /* =========================================
+           PAYMENT PAGE - COMPLETE LAYOUT
+        ========================================= */
+
+        body {
+            margin: 0 !important;
+            padding: 0 !important;
+            background: #f4f7fb !important;
+            color: #173b63;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        /* =========================================
+           NAVBAR
+        ========================================= */
+
+        .payment-navbar {
+            width: 100%;
+            height: 70px;
+
+            background: #123b60;
+
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+
+            padding: 0 50px !important;
+
+            box-sizing: border-box;
+
+            margin: 0 !important;
+        }
+
+
+        .payment-logo {
+            color: white;
+
+            font-size: 28px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+        }
+
+
+        .payment-nav {
+            display: flex !important;
+
+            align-items: center !important;
+
+            justify-content: flex-end !important;
+
+            gap: 30px !important;
+
+            margin: 0 !important;
+
+            padding: 0 !important;
+        }
+
+
+        .payment-nav a {
+            color: white !important;
+
+            text-decoration: none !important;
+
+            font-size: 16px !important;
+
+            font-weight: 500 !important;
+
+            white-space: nowrap;
+
+            padding: 5px 0 !important;
+
+            margin: 0 !important;
+        }
+
+
+        .payment-nav a:hover {
+            color: #cfe5ff !important;
+        }
+
+
+        /* =========================================
+           MAIN PAGE
+        ========================================= */
+
+        .payment-page {
+            width: 100%;
+
+            min-height:
+                calc(100vh - 70px);
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: flex-start;
+
+            padding: 45px 20px 70px;
+
+            box-sizing: border-box;
+        }
+
+
+        /* =========================================
+           MAIN CARD
+        ========================================= */
+
+        .payment-container {
+            width: 100%;
+
+            max-width: 850px;
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 40px 45px 45px;
+
+            box-sizing: border-box;
+
+            box-shadow:
+                0 8px 30px
+                rgba(0, 0, 0, 0.08);
+        }
+
+
+        /* =========================================
+           TITLE
+        ========================================= */
+
+        .payment-title {
+            margin: 0 0 32px;
+
+            text-align: center;
+
+            color: #123b60;
+
+            font-size: 32px;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================
+           SECTION CARDS
+        ========================================= */
+
+        .payment-section {
+            width: 100%;
+
+            background: #f8fbff;
+
+            border: 1px solid #dce7f3;
+
+            border-radius: 14px;
+
+            padding: 25px 28px;
+
+            box-sizing: border-box;
+
+            margin-bottom: 25px;
+        }
+
+
+        .payment-section-title {
+            margin: 0 0 20px;
+
+            color: #123b60;
+
+            font-size: 21px;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================
+           BOOKING DETAILS
+        ========================================= */
+
+        .booking-details-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 18px 35px;
+        }
+
+
+        .payment-detail {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+
+        .payment-detail-label {
+            color: #64748b;
+
+            font-size: 13px;
+
+            font-weight: 500;
+        }
+
+
+        .payment-detail-value {
+            color: #173b63;
+
+            font-size: 16px;
+
+            font-weight: 600;
+        }
+
+
+        .payment-amount {
+            color: #087f3e;
+
+            font-size: 21px;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================
+           PAYMENT DISTRIBUTION
+        ========================================= */
+
+        .distribution-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 13px 0;
+
+            border-bottom: 1px solid #e2e8f0;
+
+            font-size: 16px;
+        }
+
+
+        .distribution-row:last-child {
+            border-bottom: none;
+        }
+
+
+        .distribution-label {
+            color: #475569;
+        }
+
+
+        .distribution-value {
+            color: #173b63;
+
+            font-weight: 700;
+        }
+
+
+        .hotel-receive {
+            color: #087f3e;
+        }
+
+
+        .admin-receive {
+            color: #2563eb;
+        }
+
+
+        .gateway-receive {
+            color: #7c3aed;
+        }
+
+
+        .total-row {
+            margin-top: 10px;
+
+            padding-top: 18px;
+
+            border-top: 2px solid #94a3b8;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            font-size: 19px;
+
+            font-weight: 700;
+        }
+
+
+        .total-value {
+            color: #087f3e;
+
+            font-size: 21px;
+        }
+
+
+        /* =========================================
+           PAYMENT METHOD
+        ========================================= */
+
+        .payment-method-section {
+            margin-top: 5px;
+
+            padding: 0 5px;
+        }
+
+
+        .payment-method-title {
+            margin: 0 0 18px;
+
+            color: #123b60;
+
+            font-size: 21px;
+
+            font-weight: 700;
+        }
+
+
+        .payment-options {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 14px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .payment-option {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            min-height: 52px;
+
+            padding: 0 16px;
+
+            background: white;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 9px;
+
+            box-sizing: border-box;
+
+            cursor: pointer;
+
+            color: #173b63;
+
+            font-size: 16px;
+
+            font-weight: 500;
+        }
+
+
+        .payment-option:hover {
+            border-color: #2563eb;
+
+            background: #f8fbff;
+        }
+
+
+        .payment-option input {
+            width: 17px;
+
+            height: 17px;
+
+            margin: 0;
+
+            accent-color: #2563eb;
+
+            cursor: pointer;
+        }
+
+
+        /* =========================================
+           PAY BUTTON
+        ========================================= */
+
+        .pay-button {
+            width: 100%;
+
+            height: 52px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .pay-button:hover {
+            background: #1d4ed8;
+        }
+
+
+        .pay-button:disabled {
+            background: #94a3b8;
+
+            cursor: not-allowed;
+        }
+
+
+        /* =========================================
+           PAYMENT MESSAGE
+        ========================================= */
+
+        #paymentMessage {
+            margin-top: 22px;
+
+            text-align: center;
+
+            font-size: 16px;
+
+            line-height: 1.8;
+
+            font-weight: 600;
+
+            min-height: 30px;
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 700px) {
+
+            .payment-navbar {
+                height: auto;
+
+                min-height: 70px;
+
+                padding: 15px 20px !important;
+
+                flex-direction: column;
+
+                gap: 12px;
+            }
+
+
+            .payment-nav {
+                flex-wrap: wrap;
+
+                justify-content: center !important;
+
+                gap: 15px !important;
+            }
+
+
+            .payment-nav a {
+                font-size: 14px !important;
+            }
+
+
+            .payment-page {
+                padding:
+                    25px 12px 50px;
+            }
+
+
+            .payment-container {
+                padding:
+                    28px 20px 32px;
+            }
+
+
+            .payment-title {
+                font-size: 27px;
+            }
+
+
+            .booking-details-grid {
+                grid-template-columns: 1fr;
+
+                gap: 15px;
+            }
+
+
+            .payment-options {
+                grid-template-columns: 1fr;
+            }
+
+
+            .payment-section {
+                padding:
+                    22px 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     NAVBAR
+========================================= -->
+
+<header class="payment-navbar">
+
+    <div class="payment-logo">
+        StayEase
+    </div>
+
+
+    <nav class="payment-nav">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="hotels.html">
+            Hotels
+        </a>
+
+        <a href="bookings.html">
+            My Bookings
+        </a>
+
+        <a href="profile.html">
+            Profile
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =========================================
+     PAYMENT PAGE
+========================================= -->
+
+<main class="payment-page">
+
+
+    <div class="payment-container">
+
+
+        <h1 class="payment-title">
+            Complete Payment
+        </h1>
+
+
+
+        <!-- =====================================
+             BOOKING DETAILS
+        ====================================== -->
+
+        <section class="payment-section">
+
+            <h2 class="payment-section-title">
+                Booking Details
+            </h2>
+
+
+            <div class="booking-details-grid">
+
+
+                <div class="payment-detail">
+
+                    <span class="payment-detail-label">
+                        Booking ID
+                    </span>
+
+                    <span
+                        class="payment-detail-value"
+                        id="paymentBookingId"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="payment-detail">
+
+                    <span class="payment-detail-label">
+                        Hotel
+                    </span>
+
+                    <span
+                        class="payment-detail-value"
+                        id="paymentHotelName"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="payment-detail">
+
+                    <span class="payment-detail-label">
+                        Room Type
+                    </span>
+
+                    <span
+                        class="payment-detail-value"
+                        id="paymentRoomType"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="payment-detail">
+
+                    <span class="payment-detail-label">
+                        Persons
+                    </span>
+
+                    <span
+                        class="payment-detail-value"
+                        id="paymentPersons"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="payment-detail">
+
+                    <span class="payment-detail-label">
+                        AC / Non-AC
+                    </span>
+
+                    <span
+                        class="payment-detail-value"
+                        id="paymentAcType"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="payment-detail">
+
+                    <span class="payment-detail-label">
+                        Check-in
+                    </span>
+
+                    <span
+                        class="payment-detail-value"
+                        id="paymentCheckIn"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="payment-detail">
+
+                    <span class="payment-detail-label">
+                        Check-out
+                    </span>
+
+                    <span
+                        class="payment-detail-value"
+                        id="paymentCheckOut"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="payment-detail">
+
+                    <span class="payment-detail-label">
+                        Total Amount
+                    </span>
+
+                    <span
+                        class="payment-amount"
+                        id="paymentTotalAmount"
+                    >
+                        ₹0
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             PAYMENT DISTRIBUTION
+        ====================================== -->
+
+        <section class="payment-section">
+
+            <h2 class="payment-section-title">
+                Payment Distribution
+            </h2>
+
+
+            <div class="distribution-row">
+
+                <span class="distribution-label">
+                    Hotel Receives
+                </span>
+
+                <span
+                    class="distribution-value hotel-receive"
+                    id="hotelAmount"
+                >
+                    ₹0
+                </span>
+
+            </div>
+
+
+            <div class="distribution-row">
+
+                <span class="distribution-label">
+                    Admin Revenue
+                </span>
+
+                <span
+                    class="distribution-value admin-receive"
+                    id="adminAmount"
+                >
+                    ₹0
+                </span>
+
+            </div>
+
+
+            <div class="distribution-row">
+
+                <span class="distribution-label">
+                    Payment Module
+                </span>
+
+                <span
+                    class="distribution-value gateway-receive"
+                    id="gatewayAmount"
+                >
+                    ₹0
+                </span>
+
+            </div>
+
+
+            <div class="total-row">
+
+                <span>
+                    Total
+                </span>
+
+                <span
+                    class="total-value"
+                    id="distributionTotal"
+                >
+                    ₹0
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             PAYMENT METHOD
+        ====================================== -->
+
+        <section class="payment-method-section">
+
+            <h2 class="payment-method-title">
+                Select Payment Method
+            </h2>
+
+
+            <form
+                id="paymentForm"
+                onsubmit="completePayment(event)"
+            >
+
+
+                <div class="payment-options">
+
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="paymentMethod"
+                            value="UPI"
+                        >
+
+                        <span>
+                            UPI
+                        </span>
+
+                    </label>
+
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="paymentMethod"
+                            value="Debit Card"
+                        >
+
+                        <span>
+                            Debit Card
+                        </span>
+
+                    </label>
+
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="paymentMethod"
+                            value="Credit Card"
+                        >
+
+                        <span>
+                            Credit Card
+                        </span>
+
+                    </label>
+
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="paymentMethod"
+                            value="Net Banking"
+                        >
+
+                        <span>
+                            Net Banking
+                        </span>
+
+                    </label>
+
+
+                </div>
+
+
+                <button
+                    id="payButton"
+                    type="submit"
+                    class="pay-button"
+                >
+
+                    Pay & Confirm Booking
+
+                </button>
+
+
+            </form>
+
+
+            <div id="paymentMessage"></div>
+
+        </section>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- =========================================
+     EMAILJS
+========================================= -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+
+
+<!-- =========================================
+     PROJECT JAVASCRIPT
+========================================= -->
+
+<script src="js/data.js"></script>
+
+<script src="js/auth.js"></script>
+
+<script src="js/booking.js"></script>
+
+<script src="js/payment.js"></script>
+
+
+</body>
+
+</html>

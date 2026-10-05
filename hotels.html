@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Hotels - StayEase</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        .hotels-page {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            color: #123d70;
+            margin-bottom: 30px;
+            font-size: 36px;
+        }
+
+        .search-box {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .search-box input,
+        .search-box select {
+            flex: 1;
+            min-width: 200px;
+            padding: 13px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .search-box button {
+            padding: 13px 25px;
+            border: none;
+            background: #2563eb;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .hotel-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .hotel-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .hotel-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .hotel-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .hotel-card-content {
+            padding: 22px;
+        }
+
+        .hotel-card h2 {
+            color: #123d70;
+            margin: 0 0 10px;
+        }
+
+        .hotel-location {
+            color: #475569;
+            margin: 8px 0;
+        }
+
+        .hotel-rating {
+            color: #f59e0b;
+            font-size: 17px;
+            margin: 10px 0;
+        }
+
+        .hotel-description {
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        .manager-preview {
+            background: #f5f8ff;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+            color: #334155;
+        }
+
+        .hotel-price {
+            margin: 15px 0;
+            color: #475569;
+        }
+
+        .hotel-price strong {
+            color: #2563eb;
+            font-size: 20px;
+        }
+
+        .view-details-btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            background: #2563eb;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .view-details-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .empty-message {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+
+<header class="navbar">
+
+    <div class="logo">
+        StayEase
+    </div>
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="hotels.html">
+            Hotels
+        </a>
+
+        <a href="bookings.html">
+            My Bookings
+        </a>
+
+        <a href="profile.html">
+            Profile
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+     ===================================================== -->
+
+<main class="hotels-page">
+
+    <h1 class="page-title">
+        Explore Hotels
+    </h1>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search hotel or city..."
+        >
+
+
+        <select id="locationFilter">
+
+            <option value="">
+                All Locations
+            </option>
+
+        </select>
+
+
+        <button
+            onclick="searchHotels()"
+        >
+            Search
+        </button>
+
+    </div>
+
+
+    <!-- HOTEL CONTAINER -->
+
+    <div
+        id="hotelsContainer"
+        class="hotel-grid"
+    >
+
+        Loading hotels...
+
+    </div>
+
+</main>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script src="js/data.js"></script>
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        loadHotels();
+
+    }
+);
+
+
+// =====================================================
+// LOAD HOTELS
+// =====================================================
+
+function loadHotels() {
+
+    const container =
+        document.getElementById(
+            "hotelsContainer"
+        );
+
+    const hotels =
+        getHotels();
+
+
+    if (
+        !hotels ||
+        hotels.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <div class="empty-message">
+
+                <h2>
+                    No Hotels Available
+                </h2>
+
+                <p>
+                    No hotels are currently available.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    displayHotels(hotels);
+
+    loadLocations(hotels);
+
+}
+
+
+// =====================================================
+// DISPLAY HOTELS
+// =====================================================
+
+function displayHotels(hotels) {
+
+    const container =
+        document.getElementById(
+            "hotelsContainer"
+        );
+
+
+    container.innerHTML =
+        hotels.map(
+            hotel => {
+
+                const rating =
+                    hotel.rating ||
+                    "4.7";
+
+
+                const image =
+                    hotel.image ||
+                    "https://images.unsplash.com/photo-1566073771259-6a8506099945";
+
+
+                const description =
+                    hotel.description ||
+                    "Comfortable hotel with modern facilities.";
+
+
+                const manager =
+                    hotel.manager ||
+                    {};
+
+
+                const managerName =
+                    manager.name ||
+                    "Hotel Manager";
+
+
+                const managerPhone =
+                    manager.phone ||
+                    "Not Available";
+
+
+                let lowestPrice = 0;
+
+
+                if (
+                    hotel.rooms &&
+                    hotel.rooms.length > 0
+                ) {
+
+                    const prices =
+                        hotel.rooms
+                            .map(
+                                room =>
+                                    Number(
+                                        room.price
+                                    )
+                            )
+                            .filter(
+                                price =>
+                                    !isNaN(price)
+                            );
+
+
+                    if (prices.length > 0) {
+
+                        lowestPrice =
+                            Math.min(
+                                ...prices
+                            );
+
+                    }
+
+                }
+
+
+                return `
+
+                    <div class="hotel-card">
+
+                        <img
+                            src="${image}"
+                            alt="${hotel.name}"
+                        >
+
+
+                        <div class="hotel-card-content">
+
+
+                            <h2>
+                                ${hotel.name}
+                            </h2>
+
+
+                            <p class="hotel-location">
+
+                                📍
+                                ${hotel.city},
+                                India
+
+                            </p>
+
+
+                            <p class="hotel-rating">
+
+                                ⭐
+                                ${rating}
+                                / 5
+
+                            </p>
+
+
+                            <p class="hotel-description">
+
+                                ${description}
+
+                            </p>
+
+
+                            <div class="manager-preview">
+
+                                <strong>
+                                    👨‍💼 Hotel Manager:
+                                </strong>
+
+                                ${managerName}
+
+                                <br>
+
+                                <strong>
+                                    📞
+                                </strong>
+
+                                ${managerPhone}
+
+                            </div>
+
+
+                            <div class="hotel-price">
+
+                                Starting from
+
+                                <strong>
+                                    ₹${lowestPrice.toLocaleString("en-IN")}
+                                </strong>
+
+                                / night
+
+                            </div>
+
+
+                            <!-- IMPORTANT -->
+
+                            <button
+                                class="view-details-btn"
+                                onclick="viewDetails('${hotel.id}')"
+                            >
+
+                                View Details
+
+                            </button>
+
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        ).join("");
+
+}
+
+
+// =====================================================
+// VIEW DETAILS
+// =====================================================
+
+function viewDetails(hotelId) {
+
+    console.log(
+        "Opening hotel:",
+        hotelId
+    );
+
+
+    if (
+        hotelId === undefined ||
+        hotelId === null ||
+        hotelId === ""
+    ) {
+
+        alert(
+            "Hotel ID is missing."
+        );
+
+        return;
+
+    }
+
+
+    window.location.href =
+        "hotel-details.html?id=" +
+        encodeURIComponent(
+            hotelId
+        );
+
+}
+
+
+// =====================================================
+// LOAD LOCATIONS
+// =====================================================
+
+function loadLocations(hotels) {
+
+    const select =
+        document.getElementById(
+            "locationFilter"
+        );
+
+
+    const cities =
+        [
+            ...new Set(
+                hotels.map(
+                    hotel =>
+                        hotel.city
+                )
+            )
+        ];
+
+
+    select.innerHTML = `
+
+        <option value="">
+            All Locations
+        </option>
+
+        ${cities.map(
+            city => `
+
+                <option value="${city}">
+                    ${city}
+                </option>
+
+            `
+        ).join("")}
+
+    `;
+
+}
+
+
+// =====================================================
+// SEARCH
+// =====================================================
+
+function searchHotels() {
+
+    const search =
+        document.getElementById(
+            "searchInput"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const location =
+        document.getElementById(
+            "locationFilter"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const hotels =
+        getHotels();
+
+
+    const filtered =
+        hotels.filter(
+            hotel => {
+
+                const name =
+                    hotel.name
+                        .toLowerCase();
+
+
+                const city =
+                    hotel.city
+                        .toLowerCase();
+
+
+                const matchesSearch =
+                    !search ||
+                    name.includes(search) ||
+                    city.includes(search);
+
+
+                const matchesLocation =
+                    !location ||
+                    city === location;
+
+
+                return (
+                    matchesSearch &&
+                    matchesLocation
+                );
+
+            }
+        );
+
+
+    displayHotels(filtered);
+
+}
+
+</script>
+
+
+</body>
+
+</html>

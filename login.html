@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>User Login - StayEase</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           NAVBAR
+           ========================= */
+
+        .navbar {
+            height: 72px;
+            background: #12304d;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+        }
+
+
+        .logo {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+
+        .nav-links a:hover {
+            color: #60a5fa;
+        }
+
+
+        /* =========================
+           LOGIN PAGE
+           ========================= */
+
+        .login-page {
+            min-height: calc(100vh - 72px);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 40px 20px;
+        }
+
+
+        .login-card {
+            width: 100%;
+            max-width: 450px;
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 10px 35px rgba(0, 0, 0, 0.10);
+        }
+
+
+        .login-icon {
+            width: 65px;
+            height: 65px;
+
+            margin: 0 auto 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #eef4ff;
+
+            border-radius: 50%;
+
+            font-size: 30px;
+        }
+
+
+        .login-card h1 {
+            text-align: center;
+
+            color: #172b4d;
+
+            font-size: 30px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .login-subtitle {
+            text-align: center;
+
+            color: #666;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =========================
+           FORM
+           ========================= */
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #172b4d;
+
+            font-weight: bold;
+        }
+
+
+        .form-group input {
+            width: 100%;
+
+            padding: 13px 15px;
+
+            border: 1px solid #d5dbe5;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            outline: none;
+        }
+
+
+        .form-group input:focus {
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 3px rgba(37, 99, 235, 0.10);
+        }
+
+
+        .login-button {
+            width: 100%;
+
+            padding: 14px;
+
+            margin-top: 5px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .login-button:hover {
+            background: #1d4ed8;
+        }
+
+
+        /* =========================
+           MESSAGE
+           ========================= */
+
+        .message {
+            display: none;
+
+            padding: 12px;
+
+            margin-bottom: 18px;
+
+            border-radius: 8px;
+
+            text-align: center;
+
+            font-size: 14px;
+        }
+
+
+        .error {
+            display: block;
+
+            background: #fee2e2;
+
+            color: #b91c1c;
+        }
+
+
+        .success {
+            display: block;
+
+            background: #dcfce7;
+
+            color: #15803d;
+        }
+
+
+        /* =========================
+           REGISTER LINK
+           ========================= */
+
+        .register-text {
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #666;
+        }
+
+
+        .register-text a {
+            color: #2563eb;
+
+            font-weight: bold;
+
+            text-decoration: none;
+        }
+
+
+        .register-text a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =========================
+           DEMO USER
+           ========================= */
+
+        .demo-box {
+            margin-top: 25px;
+
+            padding: 16px;
+
+            background: #f5f7fb;
+
+            border-radius: 9px;
+
+            font-size: 14px;
+
+            color: #555;
+
+            line-height: 1.7;
+        }
+
+
+        .demo-box strong {
+            color: #172b4d;
+        }
+
+
+        /* =========================
+           MOBILE
+           ========================= */
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                height: auto;
+
+                padding: 15px 20px;
+
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+
+            .nav-links {
+                gap: 15px;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+
+            .nav-links a {
+                font-size: 14px;
+            }
+
+
+            .login-card {
+                padding: 30px 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+         ========================= -->
+
+    <nav class="navbar">
+
+
+        <div class="logo">
+            StayEase
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+
+            <a href="hotels.html">
+                Hotels
+            </a>
+
+
+            <a href="register.html">
+                Register
+            </a>
+
+
+            <a href="admin/login.html">
+                Admin Login
+            </a>
+
+        </div>
+
+
+    </nav>
+
+
+
+    <!-- =========================
+         LOGIN
+         ========================= -->
+
+    <main class="login-page">
+
+
+        <div class="login-card">
+
+
+            <div class="login-icon">
+                🔐
+            </div>
+
+
+            <h1>
+                Welcome Back
+            </h1>
+
+
+            <p class="login-subtitle">
+                Login to continue your booking
+            </p>
+
+
+            <div
+                id="message"
+                class="message">
+            </div>
+
+
+
+            <form id="loginForm">
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required>
+
+                </div>
+
+
+
+                <button
+                    type="submit"
+                    class="login-button">
+
+                    Login
+
+                </button>
+
+
+            </form>
+
+
+
+            <p class="register-text">
+
+                Don't have an account?
+
+                <a href="register.html">
+                    Create Account
+                </a>
+
+            </p>
+
+
+
+            <div class="demo-box">
+
+                <strong>
+                    Demo User Account
+                </strong>
+
+                <br>
+
+                Email:
+                ravi@gmail.com
+
+                <br>
+
+                Password:
+                123456
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+         ========================= -->
+
+    <script>
+
+
+        document
+            .getElementById("loginForm")
+            .addEventListener(
+                "submit",
+                function(event) {
+
+                    event.preventDefault();
+
+
+                    const email =
+                        document
+                        .getElementById("email")
+                        .value
+                        .trim()
+                        .toLowerCase();
+
+
+                    const password =
+                        document
+                        .getElementById("password")
+                        .value;
+
+
+                    const message =
+                        document
+                        .getElementById("message");
+
+
+                    /* =========================
+                       GET USERS
+                       ========================= */
+
+                    let users =
+                        JSON.parse(
+                            localStorage.getItem("users")
+                        ) || [];
+
+
+                    /*
+                     * Create demo users only
+                     * if there are no users.
+                     */
+
+                    if (users.length === 0) {
+
+                        users = [
+
+                            {
+                                id: 1,
+                                name: "Ravi Teja",
+                                email: "ravi@gmail.com",
+                                password: "123456",
+                                phone: "9876543210"
+                            },
+
+                            {
+                                id: 2,
+                                name: "Anjali Reddy",
+                                email: "anjali@gmail.com",
+                                password: "123456",
+                                phone: "9876543211"
+                            }
+
+                        ];
+
+
+                        localStorage.setItem(
+                            "users",
+                            JSON.stringify(users)
+                        );
+
+                    }
+
+
+                    /* =========================
+                       FIND USER
+                       ========================= */
+
+                    const user =
+                        users.find(
+                            function(item) {
+
+                                return (
+                                    item.email === email &&
+                                    item.password === password
+                                );
+
+                            }
+                        );
+
+
+                    /* =========================
+                       INVALID LOGIN
+                       ========================= */
+
+                    if (!user) {
+
+                        message.className =
+                            "message error";
+
+                        message.textContent =
+                            "Invalid email or password.";
+
+                        return;
+
+                    }
+
+
+                    /* =========================
+                       SAVE CURRENT USER
+                       ========================= */
+
+                    localStorage.setItem(
+                        "currentUser",
+                        JSON.stringify(user)
+                    );
+
+
+                    /* =========================
+                       SUCCESS MESSAGE
+                       ========================= */
+
+                    message.className =
+                        "message success";
+
+                    message.textContent =
+                        "Login successful!";
+
+
+                    /* =========================
+                       CHECK REDIRECT
+                       ========================= */
+
+                    const params =
+                        new URLSearchParams(
+                            window.location.search
+                        );
+
+
+                    const redirect =
+                        params.get("redirect");
+
+
+                    /*
+                     * If the user came from
+                     * Final Booking, return to
+                     * booking.html.
+                     *
+                     * booking.js will then find
+                     * pendingBooking and register
+                     * the booking automatically.
+                     */
+
+                    setTimeout(
+                        function() {
+
+                            if (
+                                redirect ===
+                                "booking"
+                            ) {
+
+                                window.location.href =
+                                    "booking.html";
+
+                            }
+
+                            else {
+
+                                window.location.href =
+                                    "index.html";
+
+                            }
+
+                        },
+                        700
+                    );
+
+                }
+            );
+
+
+    </script>
+
+
+</body>
+
+</html>

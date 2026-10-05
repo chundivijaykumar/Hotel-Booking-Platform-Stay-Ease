@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Hotel Details - StayEase</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        .details-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .hotel-details-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .hotel-details-image {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hotel-details-content {
+            padding: 35px;
+        }
+
+        .hotel-details-content h1 {
+            font-size: 42px;
+            color: #123d70;
+            margin: 0 0 10px;
+        }
+
+        .city {
+            font-size: 18px;
+            color: #475569;
+            margin-bottom: 12px;
+        }
+
+        .rating {
+            font-size: 20px;
+            color: #f59e0b;
+            margin-bottom: 20px;
+        }
+
+        /* MANAGER */
+
+        .manager-box {
+            background: #f5f8ff;
+            border-left: 5px solid #2563eb;
+            border-radius: 12px;
+            padding: 22px;
+            margin: 20px 0 25px;
+        }
+
+        .manager-box h2 {
+            color: #123d70;
+            font-size: 22px;
+            margin-top: 0;
+        }
+
+        .manager-row {
+            margin: 10px 0;
+            color: #334155;
+        }
+
+        .manager-row strong {
+            display: inline-block;
+            min-width: 165px;
+            color: #1e3a5f;
+        }
+
+        .manager-row a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .map-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 11px 18px;
+            background: #2563eb;
+            color: white !important;
+            border-radius: 8px;
+            text-decoration: none !important;
+        }
+
+        .description {
+            color: #475569;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        /* AMENITIES */
+
+        .amenities {
+            margin-top: 25px;
+        }
+
+        .amenities h2 {
+            color: #123d70;
+        }
+
+        .amenities-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .amenity {
+            background: #eef4ff;
+            color: #2563eb;
+            padding: 10px 16px;
+            border-radius: 25px;
+        }
+
+        /* ROOMS */
+
+        .rooms-section {
+            margin-top: 40px;
+        }
+
+        .rooms-section h2 {
+            color: #123d70;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .rooms-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .room-card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+        }
+
+        .room-card h3 {
+            color: #123d70;
+            font-size: 22px;
+            margin-top: 0;
+            margin-bottom: 18px;
+        }
+
+        .room-detail {
+            margin: 12px 0;
+            color: #475569;
+            font-size: 15px;
+        }
+
+        .room-detail strong {
+            color: #1e3a5f;
+        }
+
+        .room-price {
+            color: #2563eb;
+            font-size: 23px;
+            font-weight: bold;
+            margin: 18px 0;
+        }
+
+        .room-price span {
+            font-size: 14px;
+            color: #64748b;
+            font-weight: normal;
+        }
+
+        .book-btn {
+            width: 100%;
+            padding: 13px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .book-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* AC / NON AC */
+
+        .room-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .room-option {
+            border: 1px solid #dbe3ef;
+            border-radius: 10px;
+            padding: 14px;
+            background: #f8fafc;
+        }
+
+        .room-option h4 {
+            margin: 0 0 8px;
+            color: #123d70;
+        }
+
+        .option-price {
+            color: #2563eb;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .option-button {
+            width: 100%;
+            padding: 9px;
+            border: none;
+            background: #2563eb;
+            color: white;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .option-button:hover {
+            background: #1d4ed8;
+        }
+
+        .non-ac .option-price {
+            color: #475569;
+        }
+
+        .non-ac .option-button {
+            background: #475569;
+        }
+
+        .non-ac .option-button:hover {
+            background: #334155;
+        }
+
+        /* NOT FOUND */
+
+        .not-found {
+            background: white;
+            padding: 50px;
+            text-align: center;
+            border-radius: 20px;
+        }
+
+        .not-found h2 {
+            color: #dc2626;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 900px) {
+
+            .rooms-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .details-container {
+                padding: 0 12px;
+            }
+
+            .hotel-details-image {
+                height: 250px;
+            }
+
+            .hotel-details-content {
+                padding: 22px;
+            }
+
+            .hotel-details-content h1 {
+                font-size: 30px;
+            }
+
+            .room-options {
+                grid-template-columns: 1fr;
+            }
+
+            .manager-row strong {
+                display: block;
+                margin-bottom: 4px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+
+<header class="navbar">
+
+    <div class="logo">
+        StayEase
+    </div>
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="hotels.html">
+            Hotels
+        </a>
+
+        <a href="bookings.html">
+            My Bookings
+        </a>
+
+        <a href="profile.html">
+            Profile
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+     ===================================================== -->
+
+<main class="details-container">
+
+    <div id="hotelDetails">
+        Loading hotel details...
+    </div>
+
+
+    <div
+        id="roomsSection"
+        class="rooms-section"
+    >
+
+        <h2>
+            Available Rooms
+        </h2>
+
+        <div
+            id="roomsContainer"
+            class="rooms-grid"
+        >
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<script src="js/data.js"></script>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const hotelId =
+            params.get("id");
+
+
+        if (!hotelId) {
+
+            showNotFound();
+
+            return;
+
+        }
+
+
+        const hotels =
+            getHotels();
+
+
+        const hotel =
+            hotels.find(
+                h =>
+                    String(h.id) ===
+                    String(hotelId)
+            );
+
+
+        if (!hotel) {
+
+            showNotFound();
+
+            return;
+
+        }
+
+
+        displayHotel(hotel);
+
+        displayRooms(hotel);
+
+    }
+);
+
+
+// =====================================================
+// DISPLAY HOTEL
+// =====================================================
+
+function displayHotel(hotel) {
+
+    const container =
+        document.getElementById(
+            "hotelDetails"
+        );
+
+
+    const manager =
+        hotel.manager || {};
+
+
+    const image =
+        hotel.image ||
+        "https://images.unsplash.com/photo-1566073771259-6a8506099945";
+
+
+    const rating =
+        hotel.rating || "4.7";
+
+
+    const location =
+        hotel.location ||
+        hotel.city + ", India";
+
+
+    const locationLink =
+        hotel.locationLink ||
+        (
+            "https://www.google.com/maps/search/?api=1&query=" +
+            encodeURIComponent(
+                hotel.name +
+                " " +
+                hotel.city
+            )
+        );
+
+
+    let amenitiesHTML = "";
+
+
+    if (
+        hotel.amenities &&
+        hotel.amenities.length
+    ) {
+
+        amenitiesHTML =
+            hotel.amenities.map(
+                amenity => `
+
+                    <span class="amenity">
+                        ${amenity}
+                    </span>
+
+                `
+            ).join("");
+
+    }
+
+
+    container.innerHTML = `
+
+        <div class="hotel-details-card">
+
+            <img
+                src="${image}"
+                alt="${hotel.name}"
+                class="hotel-details-image"
+            >
+
+
+            <div class="hotel-details-content">
+
+                <h1>
+                    ${hotel.name}
+                </h1>
+
+
+                <div class="city">
+                    📍
+                    ${hotel.city},
+                    India
+                </div>
+
+
+                <div class="rating">
+                    ⭐
+                    ${rating}
+                    / 5
+                </div>
+
+
+                <!-- HOTEL MANAGER -->
+
+                <div class="manager-box">
+
+                    <h2>
+                        👨‍💼 Hotel Manager Details
+                    </h2>
+
+
+                    <div class="manager-row">
+
+                        <strong>
+                            Manager Name:
+                        </strong>
+
+                        ${manager.name || "Not Available"}
+
+                    </div>
+
+
+                    <div class="manager-row">
+
+                        <strong>
+                            📞 Contact Number:
+                        </strong>
+
+                        <a
+                            href="tel:${manager.phone || ""}"
+                        >
+                            ${manager.phone || "Not Available"}
+                        </a>
+
+                    </div>
+
+
+                    <div class="manager-row">
+
+                        <strong>
+                            ✉️ Email:
+                        </strong>
+
+                        <a
+                            href="mailto:${manager.email || ""}"
+                        >
+                            ${manager.email || "Not Available"}
+                        </a>
+
+                    </div>
+
+
+                    <div class="manager-row">
+
+                        <strong>
+                            📍 Hotel Location:
+                        </strong>
+
+                        ${location}
+
+                    </div>
+
+
+                    <a
+                        href="${locationLink}"
+                        target="_blank"
+                        class="map-btn"
+                    >
+                        📍 View Hotel Location
+                        on Google Maps
+                    </a>
+
+                </div>
+
+
+                <p class="description">
+
+                    ${
+                        hotel.description ||
+                        "Comfortable hotel with modern facilities and excellent service."
+                    }
+
+                </p>
+
+
+                <div class="amenities">
+
+                    <h2>
+                        Hotel Amenities
+                    </h2>
+
+
+                    <div class="amenities-list">
+
+                        ${amenitiesHTML}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+// =====================================================
+// DISPLAY ROOMS
+// =====================================================
+
+function displayRooms(hotel) {
+
+    const container =
+        document.getElementById(
+            "roomsContainer"
+        );
+
+
+    /*
+       We create 3 room types.
+
+       Each room has:
+       - AC
+       - Non-AC
+       - Different prices
+    */
+
+
+    const rooms = [
+
+        {
+            type: "Deluxe Room",
+            capacity: 2,
+            acPrice: 3000,
+            nonAcPrice: 2400
+        },
+
+        {
+            type: "Executive Room",
+            capacity: 3,
+            acPrice: 4000,
+            nonAcPrice: 3300
+        },
+
+        {
+            type: "Family Suite",
+            capacity: 4,
+            acPrice: 5000,
+            nonAcPrice: 4200
+        }
+
+    ];
+
+
+    container.innerHTML =
+        rooms.map(
+            (room, index) => `
+
+                <div class="room-card">
+
+                    <h3>
+                        ${room.type}
+                    </h3>
+
+
+                    <div class="room-detail">
+
+                        <strong>
+                            👥 Capacity:
+                        </strong>
+
+                        ${room.capacity} Persons
+
+                    </div>
+
+
+                    <div class="room-options">
+
+
+                        <!-- AC -->
+
+                        <div class="room-option">
+
+                            <h4>
+                                ❄️ AC
+                            </h4>
+
+
+                            <div class="option-price">
+
+                                ₹${room.acPrice.toLocaleString("en-IN")}
+
+                                <small>
+                                    / night
+                                </small>
+
+                            </div>
+
+
+                            <button
+                                class="option-button"
+                                onclick="bookRoom(
+                                    '${hotel.id}',
+                                    '${room.type}',
+                                    '${room.capacity}',
+                                    'AC',
+                                    '${room.acPrice}'
+                                )"
+                            >
+
+                                Book AC
+
+                            </button>
+
+                        </div>
+
+
+                        <!-- NON AC -->
+
+                        <div class="room-option non-ac">
+
+                            <h4>
+                                🌬️ Non-AC
+                            </h4>
+
+
+                            <div class="option-price">
+
+                                ₹${room.nonAcPrice.toLocaleString("en-IN")}
+
+                                <small>
+                                    / night
+                                </small>
+
+                            </div>
+
+
+                            <button
+                                class="option-button"
+                                onclick="bookRoom(
+                                    '${hotel.id}',
+                                    '${room.type}',
+                                    '${room.capacity}',
+                                    'Non-AC',
+                                    '${room.nonAcPrice}'
+                                )"
+                            >
+
+                                Book Non-AC
+
+                            </button>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            `
+        ).join("");
+
+}
+
+
+// =====================================================
+// BOOK ROOM
+// =====================================================
+
+function bookRoom(
+    hotelId,
+    roomType,
+    capacity,
+    acType,
+    price
+) {
+
+
+    const currentUser =
+        JSON.parse(
+            localStorage.getItem(
+                "currentUser"
+            )
+        );
+
+
+    if (!currentUser) {
+
+        alert(
+            "Please login before booking."
+        );
+
+
+        window.location.href =
+            "login.html";
+
+
+        return;
+
+    }
+
+
+    const hotels =
+        getHotels();
+
+
+    const hotel =
+        hotels.find(
+            h =>
+                String(h.id) ===
+                String(hotelId)
+        );
+
+
+    if (!hotel) {
+
+        alert(
+            "Hotel not found."
+        );
+
+        return;
+
+    }
+
+
+    const selectedRoom = {
+
+        hotelId:
+            hotel.id,
+
+        hotelName:
+            hotel.name,
+
+        city:
+            hotel.city,
+
+        roomType:
+            roomType,
+
+        capacity:
+            Number(capacity),
+
+        persons:
+            Number(capacity),
+
+        acType:
+            acType,
+
+        price:
+            Number(price),
+
+        hotelLocation:
+            hotel.location || "",
+
+        hotelLocationLink:
+            hotel.locationLink || "",
+
+        managerName:
+            hotel.manager?.name || "",
+
+        managerPhone:
+            hotel.manager?.phone || "",
+
+        managerEmail:
+            hotel.manager?.email || ""
+
+    };
+
+
+    localStorage.setItem(
+        "selectedRoom",
+        JSON.stringify(
+            selectedRoom
+        )
+    );
+
+
+    /*
+       Also save the room information
+       for booking.js.
+    */
+
+    localStorage.setItem(
+        "selectedHotel",
+        JSON.stringify(
+            selectedRoom
+        )
+    );
+
+
+    window.location.href =
+        "booking.html";
+
+}
+
+
+// =====================================================
+// NOT FOUND
+// =====================================================
+
+function showNotFound() {
+
+    document.getElementById(
+        "hotelDetails"
+    ).innerHTML = `
+
+        <div class="not-found">
+
+            <h2>
+                Hotel Not Found
+            </h2>
+
+            <p>
+                The selected hotel could not
+                be found.
+            </p>
+
+
+            <a
+                href="hotels.html"
+                class="back-btn"
+            >
+                Back to Hotels
+            </a>
+
+        </div>
+
+    `;
+
+
+    document.getElementById(
+        "roomsSection"
+    ).style.display =
+        "none";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

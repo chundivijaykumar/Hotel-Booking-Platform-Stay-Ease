@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Complete Booking - StayEase</title>
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
+
+    <style>
+
+        /* =====================================
+           BOOKING PAGE
+        ===================================== */
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #173b63;
+        }
+
+
+        /* =====================================
+           NAVBAR
+        ===================================== */
+
+        .booking-navbar {
+            height: 70px;
+            background: #123b60;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 50px;
+
+            box-sizing: border-box;
+        }
+
+
+        .booking-logo {
+            color: white;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+
+        .booking-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+
+        .booking-nav-links a {
+            color: white;
+            text-decoration: none;
+
+            font-size: 16px;
+            font-weight: 500;
+
+            transition: 0.2s;
+        }
+
+
+        .booking-nav-links a:hover {
+            color: #cfe5ff;
+        }
+
+
+        /* =====================================
+           MAIN
+        ===================================== */
+
+        .booking-page {
+            min-height: calc(100vh - 70px);
+
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+
+            padding: 45px 20px 70px;
+
+            box-sizing: border-box;
+        }
+
+
+        .booking-container {
+            width: 100%;
+            max-width: 850px;
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 40px 45px 45px;
+
+            box-sizing: border-box;
+
+            box-shadow:
+                0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+
+        /* =====================================
+           TITLE
+        ===================================== */
+
+        .booking-title {
+            margin: 0 0 32px;
+
+            text-align: center;
+
+            font-size: 32px;
+
+            color: #123b60;
+        }
+
+
+        /* =====================================
+           HOTEL SUMMARY
+        ===================================== */
+
+        .hotel-summary {
+            background: #f7faff;
+
+            border: 1px solid #d8e5f2;
+
+            border-radius: 14px;
+
+            padding: 26px 28px;
+
+            margin-bottom: 35px;
+        }
+
+
+        .hotel-summary-title {
+            margin: 0 0 22px;
+
+            font-size: 21px;
+
+            color: #123b60;
+        }
+
+
+        .details-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 20px 40px;
+        }
+
+
+        .detail-item {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 6px;
+        }
+
+
+        .detail-label {
+            font-size: 13px;
+
+            color: #64748b;
+
+            font-weight: 500;
+        }
+
+
+        .detail-value {
+            font-size: 16px;
+
+            color: #173b63;
+
+            font-weight: 600;
+        }
+
+
+        .price-value {
+            color: #087f3e;
+
+            font-size: 19px;
+        }
+
+
+        /* =====================================
+           DATES
+        ===================================== */
+
+        .section-title {
+            margin: 0 0 22px;
+
+            text-align: center;
+
+            font-size: 22px;
+
+            color: #123b60;
+        }
+
+
+        .date-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 30px;
+        }
+
+
+        .date-field {
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        .date-field label {
+            margin-bottom: 9px;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            color: #334155;
+        }
+
+
+        .date-field input {
+            width: 100%;
+
+            height: 50px;
+
+            padding: 0 14px;
+
+            box-sizing: border-box;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 9px;
+
+            background: white;
+
+            color: #173b63;
+
+            font-size: 16px;
+
+            outline: none;
+        }
+
+
+        .date-field input:focus {
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(37, 99, 235, 0.10);
+        }
+
+
+        /* =====================================
+           BUTTON
+        ===================================== */
+
+        .continue-button {
+            width: 100%;
+
+            height: 52px;
+
+            margin-top: 32px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .continue-button:hover {
+            background: #1d4ed8;
+        }
+
+
+        .continue-button:disabled {
+            background: #94a3b8;
+
+            cursor: not-allowed;
+        }
+
+
+        /* =====================================
+           MESSAGE
+        ===================================== */
+
+        #bookingMessage {
+            margin-top: 22px;
+
+            text-align: center;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================
+           MOBILE
+        ===================================== */
+
+        @media (max-width: 700px) {
+
+            .booking-navbar {
+                height: auto;
+
+                min-height: 70px;
+
+                padding: 15px 20px;
+
+                flex-direction: column;
+
+                gap: 12px;
+            }
+
+
+            .booking-nav-links {
+                gap: 14px;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+
+            .booking-nav-links a {
+                font-size: 14px;
+            }
+
+
+            .booking-page {
+                padding:
+                    25px 12px 50px;
+            }
+
+
+            .booking-container {
+                padding:
+                    28px 20px 32px;
+            }
+
+
+            .booking-title {
+                font-size: 27px;
+            }
+
+
+            .details-grid {
+                grid-template-columns: 1fr;
+
+                gap: 16px;
+            }
+
+
+            .date-grid {
+                grid-template-columns: 1fr;
+
+                gap: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================
+     NAVBAR
+===================================== -->
+
+<header class="booking-navbar">
+
+    <div class="booking-logo">
+        StayEase
+    </div>
+
+
+    <nav class="booking-nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="hotels.html">
+            Hotels
+        </a>
+
+        <a href="bookings.html">
+            My Bookings
+        </a>
+
+        <a href="profile.html">
+            Profile
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================
+     MAIN BOOKING PAGE
+===================================== -->
+
+<main class="booking-page">
+
+
+    <div class="booking-container">
+
+
+        <h1 class="booking-title">
+            Complete Your Booking
+        </h1>
+
+
+
+        <!-- =================================
+             SELECTED HOTEL
+        ================================== -->
+
+        <div class="hotel-summary">
+
+            <h2 class="hotel-summary-title">
+                Selected Hotel
+            </h2>
+
+
+            <div class="details-grid">
+
+
+                <!-- HOTEL -->
+
+                <div class="detail-item">
+
+                    <span class="detail-label">
+                        Hotel
+                    </span>
+
+                    <span
+                        class="detail-value"
+                        id="hotelName"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+
+                <!-- CITY -->
+
+                <div class="detail-item">
+
+                    <span class="detail-label">
+                        City
+                    </span>
+
+                    <span
+                        class="detail-value"
+                        id="hotelCity"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+
+                <!-- ROOM -->
+
+                <div class="detail-item">
+
+                    <span class="detail-label">
+                        Room Type
+                    </span>
+
+                    <span
+                        class="detail-value"
+                        id="roomType"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+
+                <!-- PERSONS -->
+
+                <div class="detail-item">
+
+                    <span class="detail-label">
+                        Persons
+                    </span>
+
+                    <span
+                        class="detail-value"
+                        id="persons"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+
+                <!-- AC -->
+
+                <div class="detail-item">
+
+                    <span class="detail-label">
+                        AC / Non-AC
+                    </span>
+
+                    <span
+                        class="detail-value"
+                        id="acType"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+
+                <!-- PRICE -->
+
+                <div class="detail-item">
+
+                    <span class="detail-label">
+                        Price Per Night
+                    </span>
+
+                    <span
+                        class="detail-value price-value"
+                        id="roomPrice"
+                    >
+                        ₹0
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================
+             BOOKING DATES
+        ================================== -->
+
+        <h2 class="section-title">
+            Booking Dates
+        </h2>
+
+
+        <form id="bookingForm">
+
+
+            <div class="date-grid">
+
+
+                <!-- CHECK-IN -->
+
+                <div class="date-field">
+
+                    <label for="checkIn">
+                        Check-in Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="checkIn"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- CHECK-OUT -->
+
+                <div class="date-field">
+
+                    <label for="checkOut">
+                        Check-out Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="checkOut"
+                        required
+                    >
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                type="submit"
+                id="continueButton"
+                class="continue-button"
+            >
+
+                Continue to Payment
+
+            </button>
+
+
+        </form>
+
+
+
+        <!-- =================================
+             BOOKING MESSAGE
+        ================================== -->
+
+        <div id="bookingMessage"></div>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- =====================================
+     PROJECT JAVASCRIPT
+===================================== -->
+
+<script src="js/data.js"></script>
+
+<script src="js/auth.js"></script>
+
+<script src="js/booking.js"></script>
+
+
+
+<script>
+
+    // =====================================
+    // GET SELECTED ROOM
+    // =====================================
+
+    const selectedRoom =
+        JSON.parse(
+            localStorage.getItem(
+                "selectedRoom"
+            )
+        );
+
+
+    // =====================================
+    // CHECK SELECTED ROOM
+    // =====================================
+
+    if (!selectedRoom) {
+
+        alert(
+            "Please select a room first."
+        );
+
+        window.location.href =
+            "hotels.html";
+
+    }
+
+
+
+    // =====================================
+    // DISPLAY SELECTED ROOM
+    // =====================================
+
+    if (selectedRoom) {
+
+
+        document.getElementById(
+            "hotelName"
+        ).textContent =
+            selectedRoom.hotelName ||
+            "-";
+
+
+        document.getElementById(
+            "hotelCity"
+        ).textContent =
+            selectedRoom.city ||
+            "-";
+
+
+        document.getElementById(
+            "roomType"
+        ).textContent =
+            selectedRoom.roomType ||
+            "-";
+
+
+        document.getElementById(
+            "persons"
+        ).textContent =
+            selectedRoom.persons ||
+            "-";
+
+
+        document.getElementById(
+            "acType"
+        ).textContent =
+            selectedRoom.acType ||
+            "-";
+
+
+        document.getElementById(
+            "roomPrice"
+        ).textContent =
+            "₹" +
+            (
+                selectedRoom.price ||
+                0
+            );
+
+    }
+
+
+
+    // =====================================
+    // TODAY'S DATE
+    // =====================================
+
+    const today =
+        new Date()
+            .toISOString()
+            .split("T")[0];
+
+
+    document.getElementById(
+        "checkIn"
+    ).min = today;
+
+
+    document.getElementById(
+        "checkOut"
+    ).min = today;
+
+
+
+    // =====================================
+    // CHECK-IN DATE CHANGE
+    // =====================================
+
+    document.getElementById(
+        "checkIn"
+    ).addEventListener(
+        "change",
+        function () {
+
+            const checkOut =
+                document.getElementById(
+                    "checkOut"
+                );
+
+
+            checkOut.min =
+                this.value;
+
+
+            if (
+                checkOut.value &&
+                checkOut.value <=
+                this.value
+            ) {
+
+                checkOut.value = "";
+
+            }
+
+        }
+    );
+
+
+
+    // =====================================
+    // BOOKING FORM
+    // =====================================
+
+    document.getElementById(
+        "bookingForm"
+    ).addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            const checkIn =
+                document.getElementById(
+                    "checkIn"
+                ).value;
+
+
+            const checkOut =
+                document.getElementById(
+                    "checkOut"
+                ).value;
+
+
+            // -----------------------------
+            // VALIDATE DATES
+            // -----------------------------
+
+            if (
+                !checkIn ||
+                !checkOut
+            ) {
+
+                alert(
+                    "Please select both check-in and check-out dates."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                new Date(checkOut) <=
+                new Date(checkIn)
+            ) {
+
+                alert(
+                    "Check-out date must be after check-in date."
+                );
+
+                return;
+
+            }
+
+
+            // -----------------------------
+            // CREATE BOOKING
+            // -----------------------------
+
+            const booking =
+                createBooking({
+
+                    hotelId:
+                        selectedRoom.hotelId,
+
+                    roomType:
+                        selectedRoom.roomType,
+
+                    persons:
+                        selectedRoom.persons,
+
+                    acType:
+                        selectedRoom.acType,
+
+                    price:
+                        selectedRoom.price,
+
+                    checkIn:
+                        checkIn,
+
+                    checkOut:
+                        checkOut
+
+                });
+
+
+            if (!booking) {
+
+                return;
+
+            }
+
+
+            // -----------------------------
+            // SUCCESS MESSAGE
+            // -----------------------------
+
+            const message =
+                document.getElementById(
+                    "bookingMessage"
+                );
+
+
+            message.innerHTML = `
+
+                <span
+                    style="
+                        color:#16803c;
+                    "
+                >
+
+                    Booking details saved successfully.
+
+                    <br>
+
+                    Continue to the payment module.
+
+                    <br>
+
+                    Booking ID:
+
+                    <strong>
+                        ${booking.id}
+                    </strong>
+
+                </span>
+
+            `;
+
+
+            // -----------------------------
+            // DISABLE BUTTON
+            // -----------------------------
+
+            const button =
+                document.getElementById(
+                    "continueButton"
+                );
+
+
+            button.disabled = true;
+
+            button.textContent =
+                "Opening Payment...";
+
+
+            // -----------------------------
+            // GO TO PAYMENT
+            // -----------------------------
+
+            setTimeout(
+                function () {
+
+                    window.location.href =
+                        "payment.html";
+
+                },
+                1000
+            );
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>
