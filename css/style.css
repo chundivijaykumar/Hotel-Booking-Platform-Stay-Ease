@@ -1,0 +1,1878 @@
+/* =========================================================
+   STAYEASE HOTEL BOOKING PLATFORM
+   COMPLETE STYLE SHEET
+   ========================================================= */
+
+
+/* =========================================================
+   GLOBAL RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f3f6fb;
+    color: #123b63;
+    line-height: 1.5;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+button {
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+
+/* =========================================================
+   COMMON BUTTONS
+   ========================================================= */
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+    border-radius: 8px;
+
+    padding: 11px 20px;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.btn-primary {
+    background: #2864e6;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+}
+
+.btn-success {
+    background: #16a34a;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #15803d;
+}
+
+.btn-danger {
+    background: #dc2626;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #b91c1c;
+}
+
+.btn-secondary {
+    background: #64748b;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #475569;
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.navbar {
+    width: 100%;
+    min-height: 72px;
+
+    background: #123f65;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 60px;
+
+    box-sizing: border-box;
+
+    color: white;
+}
+
+.logo {
+    color: white;
+    font-size: 28px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.navbar nav,
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.navbar nav a,
+.navbar-links a {
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.navbar nav a:hover,
+.navbar-links a:hover {
+    color: #dbeafe;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+    min-height: 470px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 60px 20px;
+
+    background:
+        linear-gradient(
+            rgba(18, 63, 101, 0.75),
+            rgba(18, 63, 101, 0.75)
+        ),
+        url("https://images.unsplash.com/photo-1566073771259-6a8506099945")
+        center/cover no-repeat;
+}
+
+.hero-content {
+    max-width: 850px;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 52px;
+    margin-bottom: 18px;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+
+/* =========================================================
+   COMMON SECTION
+   ========================================================= */
+
+.section {
+    padding: 60px;
+}
+
+.section h2 {
+    color: #123f65;
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+.section p {
+    color: #475569;
+}
+
+
+/* =========================================================
+   CITY CARDS
+   ========================================================= */
+
+.city-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 25px;
+}
+
+.city-card {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+
+    box-shadow:
+        0 6px 25px rgba(0, 0, 0, 0.07);
+
+    transition: 0.2s ease;
+}
+
+.city-card:hover {
+    transform: translateY(-5px);
+}
+
+.city-card img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+}
+
+.city-card-content {
+    padding: 20px;
+}
+
+.city-card h3 {
+    color: #123f65;
+    margin-bottom: 10px;
+}
+
+.city-card p {
+    margin-bottom: 15px;
+}
+
+
+/* =========================================================
+   FEATURE GRID
+   ========================================================= */
+
+.feature-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 25px;
+}
+
+.feature-card {
+    background: white;
+    border-radius: 14px;
+    padding: 28px;
+
+    box-shadow:
+        0 6px 25px rgba(0, 0, 0, 0.06);
+}
+
+.feature-card h3 {
+    color: #123f65;
+    margin-bottom: 10px;
+}
+
+
+/* =========================================================
+   AUTH PAGES
+   ========================================================= */
+
+.auth-page {
+    min-height: calc(100vh - 72px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 20px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 550px;
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.07);
+}
+
+.auth-card h1 {
+    color: #123f65;
+    margin-bottom: 10px;
+}
+
+.auth-card p {
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   FORMS
+   ========================================================= */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+
+    color: #123f65;
+
+    font-weight: 700;
+
+    margin-bottom: 7px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border:
+        1px solid #cbd5e1;
+
+    border-radius: 8px;
+
+    background: white;
+
+    font-size: 15px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+textarea {
+    resize: vertical;
+}
+
+
+/* =========================================================
+   PASSWORD
+   ========================================================= */
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding-right: 50px;
+}
+
+.password-toggle {
+    position: absolute;
+
+    right: 10px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    padding: 5px;
+
+    color: #123f65;
+}
+
+
+/* =========================================================
+   HOTELS PAGE
+   ========================================================= */
+
+.hotels-page {
+    padding: 45px 60px;
+}
+
+.hotels-page h1 {
+    color: #123f65;
+    margin-bottom: 25px;
+}
+
+.search-box {
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 12px;
+
+    margin-bottom: 30px;
+
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.search-box input,
+.search-box select {
+    padding: 12px;
+
+    border:
+        1px solid #cbd5e1;
+
+    border-radius: 8px;
+
+    min-width: 200px;
+}
+
+
+/* =========================================================
+   HOTEL GRID
+   ========================================================= */
+
+.hotel-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 25px;
+}
+
+.hotel-card {
+    background: white;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 6px 25px rgba(0, 0, 0, 0.07);
+
+    transition: 0.2s ease;
+}
+
+.hotel-card:hover {
+    transform: translateY(-5px);
+}
+
+.hotel-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.hotel-card-content {
+    padding: 20px;
+}
+
+.hotel-card h3 {
+    color: #123f65;
+    margin-bottom: 6px;
+}
+
+.hotel-card .city {
+    color: #64748b;
+    margin-bottom: 10px;
+}
+
+.hotel-card .rating {
+    color: #ca8a04;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.hotel-card .price {
+    color: #123f65;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 15px 0;
+}
+
+
+/* =========================================================
+   HOTEL DETAILS
+   ========================================================= */
+
+.hotel-details-page {
+    padding: 45px 60px;
+}
+
+.hotel-details-card {
+    background: white;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 7px 28px rgba(0, 0, 0, 0.07);
+}
+
+.hotel-details-image {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+}
+
+.hotel-details-content {
+    padding: 35px;
+}
+
+.hotel-details-content h1 {
+    color: #123f65;
+    margin-bottom: 8px;
+}
+
+.hotel-details-content h2 {
+    color: #123f65;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.hotel-info {
+    margin: 10px 0;
+    color: #475569;
+}
+
+
+/* =========================================================
+   ROOM CARDS
+   ========================================================= */
+
+.room-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+.room-card {
+    background: #f8fafc;
+
+    border:
+        1px solid #e2e8f0;
+
+    border-radius: 12px;
+
+    padding: 20px;
+}
+
+.room-card h3 {
+    color: #123f65;
+    margin-bottom: 12px;
+}
+
+.room-card p {
+    margin-bottom: 8px;
+}
+
+.room-price {
+    font-size: 22px;
+    font-weight: 700;
+    color: #2563eb;
+    margin: 15px 0;
+}
+
+
+/* =========================================================
+   BOOKING PAGE
+   ========================================================= */
+
+.booking-container {
+    max-width: 850px;
+
+    margin: 45px auto;
+
+    padding: 0 20px;
+}
+
+.booking-card {
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 7px 28px rgba(0, 0, 0, 0.07);
+}
+
+.booking-card h1 {
+    color: #123f65;
+    margin-bottom: 25px;
+}
+
+.booking-summary {
+    background: #eff6ff;
+
+    border-left:
+        4px solid #2563eb;
+
+    padding: 18px;
+
+    border-radius: 8px;
+
+    margin-bottom: 25px;
+}
+
+.booking-summary p {
+    margin-bottom: 7px;
+}
+
+
+/* =========================================================
+   PAYMENT
+   ========================================================= */
+
+.payment-option {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px;
+
+    border:
+        1px solid #e2e8f0;
+
+    border-radius: 8px;
+
+    margin-bottom: 10px;
+
+    cursor: pointer;
+}
+
+.payment-option:hover {
+    background: #f8fafc;
+}
+
+
+/* =========================================================
+   BOOKING CARDS
+   ========================================================= */
+
+.bookings-container {
+    padding: 45px 60px;
+}
+
+.booking-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+.user-booking-card {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 6px 22px rgba(0, 0, 0, 0.06);
+}
+
+.user-booking-card h3 {
+    color: #123f65;
+
+    margin-bottom: 15px;
+}
+
+.user-booking-card p {
+    margin-bottom: 7px;
+
+    color: #475569;
+}
+
+
+/* =========================================================
+   PROFILE
+   ========================================================= */
+
+.profile-container {
+    max-width: 850px;
+
+    margin: 45px auto;
+
+    padding: 0 20px;
+}
+
+.profile-card {
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 7px 28px rgba(0, 0, 0, 0.07);
+}
+
+.profile-card h1 {
+    color: #123f65;
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   STATUS BADGES
+   ========================================================= */
+
+.status-badge {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.status-confirmed {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.status-completed {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.status-cancelled {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.status-pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+
+/* =========================================================
+   ADMIN DASHBOARD
+   ========================================================= */
+
+.admin-layout {
+    min-height: 100vh;
+
+    display: flex;
+
+    background: #f3f6fb;
+}
+
+
+/* =========================================================
+   ADMIN SIDEBAR
+   ========================================================= */
+
+.admin-sidebar {
+    width: 280px;
+
+    min-width: 280px;
+
+    min-height: 100vh;
+
+    background: #123f65;
+
+    color: white;
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    z-index: 1000;
+
+    padding: 30px 16px;
+
+    box-sizing: border-box;
+
+    overflow-y: auto;
+}
+
+
+/* LOGO */
+
+.admin-logo {
+    color: white;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    text-align: center;
+
+    margin-bottom: 42px;
+}
+
+
+/* ADMIN NAV */
+
+.admin-nav {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+/* IMPORTANT:
+   This removes browser default button appearance.
+*/
+
+.admin-nav-btn {
+    width: 100%;
+
+    min-height: 52px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 10px;
+
+    padding: 0 18px;
+
+    margin: 0;
+
+    border: none;
+
+    outline: none;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: white;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    line-height: 1.2;
+
+    text-align: left;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    box-shadow: none;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+/* BUTTON HOVER */
+
+.admin-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+
+    color: white;
+}
+
+
+/* ACTIVE BUTTON */
+
+.admin-nav-btn.active {
+    background: #2864e6;
+
+    color: white;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+
+/* FOCUS */
+
+.admin-nav-btn:focus {
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.admin-nav-btn.active:focus {
+    background: #2864e6;
+}
+
+
+/* LOGOUT */
+
+.admin-nav-btn.logout-btn {
+    margin-top: 15px;
+}
+
+.admin-nav-btn.logout-btn:hover {
+    background: #dc2626;
+}
+
+
+/* =========================================================
+   ADMIN MAIN
+   ========================================================= */
+
+.admin-main {
+    margin-left: 280px;
+
+    width: calc(100% - 280px);
+
+    min-height: 100vh;
+
+    padding: 40px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   ADMIN HEADER
+   ========================================================= */
+
+.admin-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 30px;
+
+    margin-bottom: 30px;
+}
+
+.admin-header h1 {
+    margin: 0;
+
+    color: #123f65;
+
+    font-size: 38px;
+}
+
+.admin-header p {
+    margin-top: 8px;
+
+    color: #475569;
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   ADMIN PROFILE
+   ========================================================= */
+
+.admin-profile-card {
+    background: white;
+
+    min-width: 240px;
+
+    padding: 18px 22px;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.06);
+}
+
+.admin-profile-card strong {
+    color: #123f65;
+
+    font-size: 17px;
+}
+
+.admin-profile-card span {
+    color: #2563eb;
+
+    font-size: 14px;
+}
+
+.admin-profile-card small {
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   ADMIN SECTIONS
+   ========================================================= */
+
+.admin-section {
+    display: none;
+}
+
+.admin-section.active {
+    display: block;
+}
+
+
+/* =========================================================
+   ADMIN STATS
+   ========================================================= */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    min-height: 120px;
+
+    box-shadow:
+        0 6px 25px rgba(0, 0, 0, 0.06);
+}
+
+.stat-card h4 {
+    color: #64748b;
+
+    font-size: 16px;
+
+    font-weight: 500;
+
+    margin-bottom: 12px;
+}
+
+.stat-card .stat-number {
+    color: #2864e6;
+
+    font-size: 30px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   ADMIN SECTION CARD
+   ========================================================= */
+
+.section-card {
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 6px 25px rgba(0, 0, 0, 0.06);
+}
+
+.section-card h2 {
+    color: #123f65;
+
+    font-size: 27px;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================================================
+   ADMIN FORM CARD
+   ========================================================= */
+
+.admin-form-card {
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 6px 25px rgba(0, 0, 0, 0.06);
+}
+
+.admin-form-card h3 {
+    color: #123f65;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   FORM GRID
+   ========================================================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+
+/* =========================================================
+   ADMIN FORM INPUTS
+   ========================================================= */
+
+.admin-form-card .form-group label {
+    display: block;
+
+    color: #123f65;
+
+    font-weight: 700;
+
+    margin-bottom: 7px;
+}
+
+.admin-form-card .form-group input,
+.admin-form-card .form-group select,
+.admin-form-card .form-group textarea {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border:
+        1px solid #cbd5e1;
+
+    border-radius: 8px;
+
+    background: white;
+
+    color: #123f65;
+
+    font-size: 15px;
+}
+
+.admin-form-card .form-group input:focus,
+.admin-form-card .form-group select:focus,
+.admin-form-card .form-group textarea:focus {
+    outline: none;
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+/* =========================================================
+   FORM BUTTONS
+   ========================================================= */
+
+.form-buttons {
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin-top: 20px;
+}
+
+
+/* =========================================================
+   ADMIN TABLE
+   ========================================================= */
+
+.table-wrapper,
+.table-scroll {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 900px;
+
+    background: white;
+}
+
+.admin-table th {
+    background: #eaf1ff;
+
+    color: #123f65;
+
+    padding: 15px;
+
+    text-align: left;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.admin-table td {
+    padding: 15px;
+
+    border-bottom:
+        1px solid #e5e7eb;
+
+    color: #334155;
+
+    vertical-align: top;
+}
+
+.admin-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+
+/* =========================================================
+   HOTEL TABLE
+   ========================================================= */
+
+.hotel-title {
+    color: #123f65;
+
+    font-weight: 700;
+
+    font-size: 16px;
+}
+
+.hotel-city {
+    color: #64748b;
+
+    font-size: 13px;
+
+    margin-top: 3px;
+}
+
+.price-text {
+    color: #123f65;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   MANAGER DETAILS
+   ========================================================= */
+
+.manager-box {
+    min-width: 240px;
+
+    line-height: 1.6;
+}
+
+.manager-name {
+    color: #123f65;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    margin-bottom: 3px;
+}
+
+.manager-info {
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+.edit-manager-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-top: 8px;
+
+    padding: 7px 12px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    appearance: none;
+
+    -webkit-appearance: none;
+}
+
+.edit-manager-btn:hover {
+    background: #1d4ed8;
+}
+
+
+/* =========================================================
+   DELETE BUTTON
+   ========================================================= */
+
+.delete-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 6px;
+
+    padding: 8px 13px;
+
+    background: #dc2626;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    appearance: none;
+
+    -webkit-appearance: none;
+}
+
+.delete-btn:hover {
+    background: #b91c1c;
+}
+
+
+/* =========================================================
+   RECENT BOOKINGS
+   ========================================================= */
+
+.recent-booking-card {
+    border:
+        1px solid #e2e8f0;
+
+    border-radius: 10px;
+
+    padding: 18px;
+
+    margin-bottom: 12px;
+
+    background: white;
+}
+
+.recent-booking-card strong {
+    color: #123f65;
+}
+
+.recent-booking-card p {
+    color: #64748b;
+
+    margin-top: 5px;
+}
+
+
+/* =========================================================
+   PAYMENT SUMMARY
+   ========================================================= */
+
+.payment-summary {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+}
+
+.payment-summary-card {
+    background: white;
+
+    padding: 23px;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.06);
+}
+
+.payment-summary-card h4 {
+    color: #64748b;
+
+    margin-bottom: 10px;
+
+    font-weight: 500;
+}
+
+.payment-summary-card p {
+    color: #2563eb;
+
+    font-size: 26px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   MANAGER EDIT
+   ========================================================= */
+
+.manager-edit-title {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+.manager-edit-title h3 {
+    margin: 0;
+}
+
+.manager-note {
+    background: #eff6ff;
+
+    color: #1e3a8a;
+
+    border-left:
+        4px solid #2563eb;
+
+    border-radius: 5px;
+
+    padding: 12px 15px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   EMPTY MESSAGE
+   ========================================================= */
+
+.empty-message {
+    text-align: center;
+
+    padding: 30px;
+
+    color: #64748b;
+}
+
+
+/* =========================================================
+   AUTH LOGIN
+   ========================================================= */
+
+.auth-page {
+    min-height: calc(100vh - 72px);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 40px 20px;
+}
+
+
+/* =========================================================
+   ADMIN LOGIN SPECIFIC
+   ========================================================= */
+
+.auth-page .auth-card {
+    width: 100%;
+    max-width: 650px;
+}
+
+
+/* =========================================================
+   PROFILE DETAILS
+   ========================================================= */
+
+.profile-info {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+.profile-info-item {
+    background: #f8fafc;
+
+    padding: 15px;
+
+    border-radius: 8px;
+}
+
+.profile-info-item strong {
+    display: block;
+
+    color: #123f65;
+
+    margin-bottom: 5px;
+}
+
+.profile-info-item span {
+    color: #64748b;
+}
+
+
+/* =========================================================
+   REVIEWS
+   ========================================================= */
+
+.review-card {
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 12px;
+
+    margin-bottom: 15px;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.review-card h3 {
+    color: #123f65;
+
+    margin-bottom: 5px;
+}
+
+.review-rating {
+    color: #ca8a04;
+
+    font-weight: 700;
+
+    margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   RESPONSIVE ADMIN
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+    .payment-summary {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .hotel-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .city-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .navbar {
+        padding: 0 25px;
+    }
+
+    .navbar nav,
+    .navbar-links {
+        gap: 15px;
+    }
+
+    .admin-sidebar {
+        width: 230px;
+
+        min-width: 230px;
+    }
+
+    .admin-main {
+        margin-left: 230px;
+
+        width:
+            calc(100% - 230px);
+
+        padding: 25px;
+    }
+
+    .admin-nav-btn {
+        font-size: 14px;
+
+        padding:
+            0 12px;
+    }
+
+    .admin-logo {
+        font-size: 25px;
+    }
+
+    .admin-header {
+        flex-direction: column;
+    }
+
+    .admin-profile-card {
+        width: 100%;
+
+        box-sizing: border-box;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: auto;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .navbar {
+        min-height: auto;
+
+        padding: 18px;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .navbar nav,
+    .navbar-links {
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero p {
+        font-size: 17px;
+    }
+
+    .section {
+        padding: 35px 20px;
+    }
+
+    .hotels-page {
+        padding: 30px 20px;
+    }
+
+    .hotel-details-page {
+        padding: 30px 20px;
+    }
+
+    .hotel-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .city-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .room-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-list {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-summary {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .admin-layout {
+        display: block;
+    }
+
+    .admin-sidebar {
+        position: relative;
+
+        width: 100%;
+
+        min-width: 100%;
+
+        min-height: auto;
+
+        padding: 20px;
+    }
+
+    .admin-logo {
+        margin-bottom: 20px;
+    }
+
+    .admin-nav {
+        gap: 5px;
+    }
+
+    .admin-nav-btn {
+        min-height: 46px;
+    }
+
+    .admin-main {
+        width: 100%;
+
+        margin-left: 0;
+
+        padding: 20px;
+    }
+
+    .admin-header h1 {
+        font-size: 30px;
+    }
+
+    .section-card,
+    .admin-form-card {
+        padding: 20px;
+    }
+
+}
+
+
+/* =========================================================
+   FINAL BUTTON RESET
+   ========================================================= */
+
+.admin-nav button,
+.admin-nav-btn,
+.edit-manager-btn,
+.delete-btn,
+.btn,
+button {
+    font-family: Arial, Helvetica, sans-serif;
+
+    text-decoration: none;
+
+    box-shadow: none;
+
+    outline-offset: 2px;
+}
+
+
+/* Prevent browser default button border */
+
+.admin-nav button {
+    border-style: none;
+}
+
+
+/* =========================================================
+   END OF STYLE.CSS
+   ========================================================= */

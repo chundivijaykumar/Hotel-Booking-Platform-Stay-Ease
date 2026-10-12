@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Login - StayEase</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css"
+    >
+
+    <style>
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #f3f6fb;
+            font-family: Arial, sans-serif;
+        }
+
+        .admin-login-page {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        .admin-login-card {
+            width: 100%;
+            max-width: 650px;
+            background: white;
+            padding: 45px;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+            box-sizing: border-box;
+        }
+
+        .admin-icon {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .admin-login-card h1 {
+            text-align: center;
+            color: #123b63;
+            font-size: 40px;
+            margin: 10px 0;
+        }
+
+        .admin-subtitle {
+            text-align: center;
+            color: #64748b;
+            font-size: 20px;
+            margin-bottom: 40px;
+        }
+
+        .admin-login-form {
+            width: 100%;
+        }
+
+        .admin-login-form label {
+            display: block;
+            color: #123b63;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .admin-login-form input {
+            width: 100%;
+            height: 58px;
+            padding: 0 16px;
+            box-sizing: border-box;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            background: #eef4ff;
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .admin-login-form input:focus {
+            outline: none;
+            border-color: #2563eb;
+            background: white;
+        }
+
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .password-wrapper input {
+            padding-right: 55px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 16px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 20px;
+            padding: 5px;
+        }
+
+        .admin-login-button {
+            width: 100%;
+            height: 55px;
+            border: none;
+            border-radius: 9px;
+            background: #2860df;
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .admin-login-button:hover {
+            background: #1d4ed8;
+        }
+
+        .admin-login-button:active {
+            transform: scale(0.99);
+        }
+
+        .login-message {
+            text-align: center;
+            min-height: 25px;
+            margin-top: 18px;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+
+            .admin-login-page {
+                padding: 15px;
+            }
+
+            .admin-login-card {
+                padding: 30px 22px;
+            }
+
+            .admin-login-card h1 {
+                font-size: 32px;
+            }
+
+            .admin-subtitle {
+                font-size: 16px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <main class="admin-login-page">
+
+        <div class="admin-login-card">
+
+            <div class="admin-icon">
+                🛡️
+            </div>
+
+
+            <h1>
+                Admin Login
+            </h1>
+
+
+            <p class="admin-subtitle">
+                Access the StayEase Hotel Management Dashboard
+            </p>
+
+
+            <form
+                id="adminLoginForm"
+                class="admin-login-form"
+            >
+
+                <label for="adminEmail">
+                    Admin Email
+                </label>
+
+                <input
+                    type="email"
+                    id="adminEmail"
+                    placeholder="Enter admin email"
+                    value="admin@stayease.in"
+                    required
+                >
+
+
+                <label for="adminPassword">
+                    Password
+                </label>
+
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        placeholder="Enter password"
+                        value="admin123"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        id="passwordToggle"
+                        onclick="toggleAdminPassword()"
+                    >
+                        👁
+                    </button>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="admin-login-button"
+                >
+                    Admin Login
+                </button>
+
+
+                <div
+                    id="adminLoginMessage"
+                    class="login-message"
+                ></div>
+
+            </form>
+
+
+            <a
+                href="../index.html"
+                class="back-link"
+            >
+                ← Back to StayEase
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        /* =========================================
+           ADMIN LOGIN
+           ========================================= */
+
+        const ADMIN_ACCOUNTS = [
+
+            {
+                name: "StayEase Administrator",
+                email: "admin@stayease.in",
+                password: "admin123",
+                role: "Hotel Platform Administrator"
+            },
+
+            {
+                name: "Vijay Kumar",
+                email: "vijay.admin@stayease.in",
+                password: "vijay123",
+                role: "Hotel Manager"
+            },
+
+            {
+                name: "Anjali Reddy",
+                email: "anjali.admin@stayease.in",
+                password: "anjali123",
+                role: "Hotel Manager"
+            }
+
+        ];
+
+
+        /* =========================================
+           PASSWORD SHOW / HIDE
+           ========================================= */
+
+        function toggleAdminPassword() {
+
+            const password =
+                document.getElementById(
+                    "adminPassword"
+                );
+
+            const button =
+                document.getElementById(
+                    "passwordToggle"
+                );
+
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+                button.textContent = "🙈";
+
+            } else {
+
+                password.type = "password";
+
+                button.textContent = "👁";
+
+            }
+
+        }
+
+
+        /* =========================================
+           LOGIN
+           ========================================= */
+
+        document
+            .getElementById("adminLoginForm")
+            .addEventListener(
+                "submit",
+                function(event) {
+
+                    event.preventDefault();
+
+
+                    const email =
+                        document
+                            .getElementById(
+                                "adminEmail"
+                            )
+                            .value
+                            .trim();
+
+
+                    const password =
+                        document
+                            .getElementById(
+                                "adminPassword"
+                            )
+                            .value
+                            .trim();
+
+
+                    const message =
+                        document.getElementById(
+                            "adminLoginMessage"
+                        );
+
+
+                    const admin =
+                        ADMIN_ACCOUNTS.find(
+                            function(account) {
+
+                                return (
+                                    account.email
+                                        .toLowerCase() ===
+                                    email.toLowerCase()
+                                )
+                                &&
+                                account.password ===
+                                    password;
+
+                            }
+                        );
+
+
+                    if (!admin) {
+
+                        message.textContent =
+                            "Invalid admin email or password.";
+
+                        message.style.color =
+                            "#dc2626";
+
+                        return;
+
+                    }
+
+
+                    /* Save logged-in admin */
+
+                    localStorage.setItem(
+                        "currentAdmin",
+                        JSON.stringify(admin)
+                    );
+
+
+                    message.textContent =
+                        "Login successful. Opening dashboard...";
+
+                    message.style.color =
+                        "#16a34a";
+
+
+                    /* Open dashboard */
+
+                    setTimeout(
+                        function() {
+
+                            window.location.href =
+                                "dashboard.html";
+
+                        },
+                        300
+                    );
+
+                }
+            );
+
+    </script>
+
+</body>
+
+</html>
